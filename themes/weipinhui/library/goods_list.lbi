@@ -30,23 +30,28 @@
         <ul class="y_searchList clearfix" >
         	<!--{foreach from=$goods_list item=goods name=goods_list}--> 
             <!--{if $goods.goods_id}-->
-            <li class="gItem_{$goods.goods_id}" {if $smarty.foreach.goods_list.index mod 3 eq 2} style="margin-right:0;"{/if}>
-            	<div class="pro_item_img">
-                	<a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" width="320" height="320"></a>
+            <li class="gItem_{$goods.goods_id}" {if $smarty.foreach.goods_list.index mod 4 eq 3} style="margin-right:0;"{/if}>
+                <div class="pro_item_img">
+                    <a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" width="320" height="320"></a>
                     <!-- {if $goods.promote_price} --><p class="pro_item_count timeBox" showday="show" value="{$goods.end_date}"></p> <!--{/if}-->
                 </div>
-                <div class="pro_item_tit"><a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><span>{$goods.zhekou}折</span>/ {$goods.name|escape:html}</a></div>
+                <div class="pro_item_tit">
+                    <a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank">
+                    <span>{$goods.zhekou}折</span>/ {$goods.name|escape:html}</a>
+                </div>
                 <div class="pro_item_info">
-                	<div class="pro_item_info_L">
-                    	<!-- {if $goods.promote_price} -->
-                        {$goods.promote_price}
-                        <!-- {else}-->
-                        {$goods.shop_price}
-                        <!--{/if}-->
-                    </div>
-                    <div class="pro_item_info_C">
-                    	<span class="icon_dscnt"><i class="icon_dscnt_l"></i><em class="icon_dscnt_m">立省：¥{$goods.jiesheng}</em><i class="icon_dscnt_r"></i></span>
-                        <del>{$goods.market_price}</del>
+                    <div style="width:100%;height:37px;">
+                        <div class="pro_item_info_L">
+                            <!-- {if $goods.promote_price} -->
+                            {$goods.promote_price}
+                            <!-- {else}-->
+                            {$goods.shop_price}
+                            <!--{/if}-->
+                        </div>
+                        <div class="pro_item_info_C">
+                            <span class="icon_dscnt"><i class="icon_dscnt_l"></i><em class="icon_dscnt_m">立省：¥{$goods.jiesheng}</em><i class="icon_dscnt_r"></i></span>
+                            <del>{$goods.market_price}</del>
+                        </div>
                     </div>
                     <div class="pro_item_info_R">
                     	<span class="pro_item_count_person"><em>{$goods.sales_volume}人</em>已购买</span>
