@@ -112,7 +112,7 @@ catch (e) {
         <div class="FloatNav" id="inner">
         	<div class="FloatNavBj"></div>
             <div class="FloatNavCon">
-            	<a href="./" class="fsc_icon" {foreach from=get_advlist_position_name_pc('头部悬浮logo透明图片',0,1) item=ad name=index_image} style="background:url({$ad.image}) no-repeat left top;" {/foreach}></a>
+            	<a style="display:none;" href="./" class="fsc_icon" {foreach from=get_advlist_position_name_pc('头部悬浮logo透明图片',0,1) item=ad name=index_image} style="background:url({$ad.image}) no-repeat left top;" {/foreach}></a>
                 <ul class="fsc_nav">
                 	<li class="on"><a href="./">首页</a></li>
                     <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
