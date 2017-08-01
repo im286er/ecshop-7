@@ -193,7 +193,8 @@ select{-webkit-appearance:none; border:0; color:#555; padding-left:0; border:1px
 .focus .hd ul .on { background: #5babe6; }
 .focus .bd { position: relative; z-index:1;}
 .focus .bd li { height: auto; overflow: hidden; }
-.focus .bd li a img { width: 100%; height: 180px; display: block; margin: 0; padding: 0; }
+.focus .bd li a img { width: 100%; height: auto; display: block; margin: 0; padding: 0; }
+
 
 /*快速导航*/
 .ect-row-nav{border-bottom:1px #e3e3e3 solid; background:#FFF; margin-top:0;}

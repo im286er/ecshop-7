@@ -1,5 +1,7 @@
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
-
+<style>
+    .focus .bd ul li a img{height:180px;}
+</style>
 <div class="con"> 
     <header class="Header clearfix">
         <div class="HeaderLogo f_l"><a href="./"><img src="__TPL__/images/logo.png" /></a></div>
