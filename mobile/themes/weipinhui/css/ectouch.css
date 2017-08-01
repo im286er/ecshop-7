@@ -186,14 +186,14 @@ select{-webkit-appearance:none; border:0; color:#555; padding-left:0; border:1px
 .ect-header-div{margin-left:3em;}
 .ect-btn-search,.ect-btn-search:active,.ect-btn-search:focus,.ect-btn-search:hover{color:silver; border:none; background:#fff; width:100%; height:2.5em; line-height:2.5em; display:block; padding:0 0.6em; font-size:1em;}
 /*banner效果*/
-.focus { width: 100%; height: auto; position: relative; overflow: hidden;}
+.focus { width: 100%; height: 180px; position: relative; overflow: hidden;}
 .focus .hd { width: 100%; height: 0.8em; position: absolute; z-index:2; text-align: center; bottom:0.5em;}
 .focus .hd ul { display: inline-block; height: 0.8em;}
 .focus .hd ul li { display: inline-block; width: 0.6em; height: 0.6em; text-indent:-999em; background: rgba(255, 255, 255, 0.8); margin: 0 0.3em; vertical-align: top; overflow: hidden; border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%; -o-border-radius: 100%; }
 .focus .hd ul .on { background: #5babe6; }
 .focus .bd { position: relative; z-index:1;}
 .focus .bd li { height: auto; overflow: hidden; }
-.focus .bd li a img { width: 100%; height: auto; display: block; margin: 0; padding: 0; }
+.focus .bd li a img { width: 100%; height: 180px; display: block; margin: 0; padding: 0; }
 
 /*快速导航*/
 .ect-row-nav{border-bottom:1px #e3e3e3 solid; background:#FFF; margin-top:0;}
