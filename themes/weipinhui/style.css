@@ -473,7 +473,7 @@ a.settleup:hover{text-decoration:none; color:#333; background-position:0 bottom;
 .fsc_icon{ float:left; width:100px; height:45px; background: no-repeat;}
 .fsc_nav{ float:left; padding:6px 0 0 35px;}
 .fsc_nav li{ float:left; margin-right:29px; display:inline;}
-.fsc_nav li a{ display:inline-block; width:76px; height:24px; color:#4c4c4c; line-height:22px; border-radius:3px; text-align:center; font-size:14px;}
+.fsc_nav li a{ display:inline-block; width:84px; height:24px; color:#4c4c4c; line-height:22px; border-radius:3px; text-align:center; font-size:14px;}
 .fsc_nav li a:hover{ background-color:#fff; color:#f10215;}
 .fsc_nav li.on a,.fsc_nav li.on a:hover{ background-color:#f10215; color:#fff;}
 
