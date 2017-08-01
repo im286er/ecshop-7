@@ -1,0 +1,71 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='transport_jquery.js,utils.js'}
+<div id="ECS_ORDERTOTAL" style="color:#000">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+        <tr>
+            <td>{$lang.goods_all_price}:</td>
+            <td align="right">{$total.goods_price_formated}</td>
+        </tr>
+        <!-- {if $total.discount gt 0} 折扣 -->
+        <tr>
+            <td>{$lang.discount}:</td>
+            <td align="right">{$total.discount_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.tax gt 0} 税 -->
+        <tr>
+            <td>{$lang.tax}:</td>
+            <td align="right">{$total.tax_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.shipping_fee > 0} 配送费用 -->
+        <tr>
+            <td>{$lang.shipping_fee}:</td>
+            <td align="right">{$total.shipping_fee_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.shipping_insure > 0} 保价费用 -->
+        <tr>
+            <td>{$lang.insure_fee}:</td>
+            <td align="right">{$total.shipping_insure_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.pay_fee > 0} 支付费用 -->
+        <tr>
+            <td>{$lang.pay_fee}:</td>
+            <td align="right">{$total.pay_fee_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.pack_fee > 0} 包装费用-->
+        <tr>
+            <td>{$lang.pack_fee}:</td>
+            <td align="right">{$total.pack_fee_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.card_fee > 0} 贺卡费用-->
+        <tr>
+            <td>{$lang.card_fee}:</td>
+            <td align="right">{$total.card_fee_formated}</td>
+        </tr>
+        <!-- {/if} -->
+        <!-- {if $total.surplus > 0 or $total.integral > 0 or $total.bonus > 0} 使用余额或积分或红包 -->
+        <tr>
+            <td  bgcolor="#fff9dd" class="nstep1_count " style="text-align:left">
+                <!-- {if $total.surplus > 0} 使用余额 -->
+                - {$lang.use_surplus}: <font class="f4_b">{$total.surplus_formated}</font>
+                <!-- {/if} -->
+                <!-- {if $total.integral > 0} 使用积分 -->
+                - {$lang.use_integral}: <font class="f4_b">{$total.integral_formated}</font>
+                <!-- {/if} -->
+                <!-- {if $total.bonus > 0} 使用红包 -->
+                - {$lang.use_bonus}: <font class="f4_b">{$total.bonus_formated}</font>
+                <!-- {/if} -->
+            </td>
+        </tr>
+        <!-- {/if} 使用余额或积分或红包 -->
+        <tr>
+            <td class="f14 bold">{$lang.total_fee}:</td>
+            <td class="bold hlight_main" align="right">{$total.amount_formated}</td>
+        </tr>
+    </table>
+</div>

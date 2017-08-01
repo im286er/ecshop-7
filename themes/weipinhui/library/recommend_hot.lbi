@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+<!-- {if $script_name eq "index"} -->
+<ul>
+  <!--{foreach name=no from=$hot_goods item=goods}-->
+  <li> <a href="{$goods.url}" title="{$goods.name|escape:html}"> <img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="120" height="70" class="item-image" />
+    <div class="item-detail"> <span class="detail-name">{$goods.short_style_name}</span> <span class="detail-agio"><span class="salebg2"><!-- {if $goods.promote_price} --> 
+      {$goods.promote_price} 
+      <!-- {else}--> 
+      {$goods.shop_price} 
+      <!--{/if}--></span></span> </div>
+    </a> </li>
+  <!--{/foreach}-->
+</ul>
+<!-- {else} -->
+<ul>
+  <!--{foreach name=no from=$hot_goods item=goods}-->
+  <li {if $smarty.foreach.no.index mod 7 eq 6} style="margin-right: 0;" {/if}>
+    <div class="MainProImg"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="187" height="187" /></a></div>
+    <div class="MainProText">
+      <p class="MainProName"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+      <p class="price" > <font class="bb f_l">原价：<s>{$goods.market_price}</s></font> <font class="aa f_r"><strong>{$lang.shop_price}</strong> 
+        <!-- {if $goods.promote_price} --> 
+        {$goods.promote_price} 
+        <!-- {else}--> 
+        {$goods.shop_price} 
+        <!--{/if}--> 
+        </font> </p>
+    </div>
+  </li>
+  <!--{/foreach}-->
+</ul>
+<!-- {/if} --> 
+<!-- {/if} --> 
+

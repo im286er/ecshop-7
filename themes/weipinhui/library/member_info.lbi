@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $user_info} -->
+
+<li>{$lang.welcome}</li>
+<li><a href="user.php">{$user_info.username}</a></li>
+<li><a href="user.php?act=logout">{$lang.user_logout}</a></li>
+<li><a href="mobile/">手机访问</a></li>
+
+<!-- {else} -->
+
+<li>{$lang.welcome}</li>
+<li><a href="user.php"><span class="f9">请登陆</span></a></li>
+<li><a href="user.php?act=register"><span class="f9">免费注册</span></a></li>
+<li><a href="mobile/">手机访问</a></li>
+
+<!-- {/if} -->
+
+<li><a href="flow.php">购物车</a></li>
+<li><a href="user.php?act=collection_list">收藏的商品</a></li>
+<li><a href="user.php?act=order_list">我的订单</a></li>
+<li class="Hover">
+    <div class="MyXiwangTit"><a href="javascript:;">关注</a></div>
+    <div class="HoverCon MyXiwangCon">
+        <dl class="weibo_list_l">
+        	<dd class="weixin_icon">用微信扫一扫</dd>
+        	<dt {foreach from=get_advlist_position_name_pc('微信图片',0,1) item=ad name=index_image} style="background:url({$ad.image}) no-repeat left top #FFFFFF;" {/foreach}></dt>
+            <dd>关注官方微信</dd>
+        </dl>
+    </div>
+</li>    

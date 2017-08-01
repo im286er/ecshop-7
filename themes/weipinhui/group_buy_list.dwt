@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,jquery.min.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div style="background:#fff; border-bottom:2px solid #f3f1f4;">
+    <div class="block_s clearfix"> 
+        <script type="text/javascript">
+            $(function(){
+            $("#group_box1").slide({mainCell:".group_l ul",titCell:".deal_brief_trigger .trigger",titOnClassName:"current",trigger:"click"});
+            setInterval(function(){
+                $(".end_date").each(function(){
+                    var obj = $(this);
+                    
+                    var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+                    var show_day =  obj.attr('showday');
+                    var nowTime = new Date();
+                    var nMS=endTime.getTime() - nowTime.getTime() + 28800000;
+                    var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+                    var myH_show=Math.floor(nMS/(1000*60*60) % 24);
+                    var myH=Math.floor(nMS/(1000*60*60));
+                    var myM=Math.floor(nMS/(1000*60)) % 60;
+                    var myS=Math.floor(nMS/1000) % 60;
+                    var myMS=Math.floor(nMS/100) % 10;
+                    
+                    var myHZero = '';
+                    var myMZero = '';
+                    var mySZero = '';
+                    if (myH < 10)
+                    {
+                        var myHZero = '0';
+                    }
+                    if (myM < 10)
+                    {
+                        var myMZero = '0';
+                    }
+                    if (myS < 10)
+                    {
+                        var mySZero = '0';
+                    }
+                        
+                    if(parseInt(myS+myM+myH+myD) > 0){
+                        if(show_day == 'show')
+                        {
+                            var str = '还剩<strong class="tcd-d">'+myD+'</strong>天<strong class="tcd-h">'+myH_show+'</strong>小时<strong class="tcd-m">'+myM+'</strong>分<strong class="tcd-s">'+myS+'</strong>秒';
+                            //var str = '还剩<strong class="tcd-d">'+myD+'</strong>天<strong class="tcd-h">'+myH_show+'</strong>小时<strong class="tcd-m">'+myM+'</strong>分<strong class="tcd-s">'+myS+'</strong>秒';
+                        }
+                        else
+                        {
+                            var str = '<span class="times">'+myHZero+myH+'</span><em>时</em><span class="times">'+myMZero+myM+'</span><em>分</em><span class="times">'+mySZero+myS+'</span><em>秒</em>';
+                        }
+                    }else{
+                        var str = "已结束！";	
+                    }
+                    obj.html(str);
+                });
+            }, 100);	
+        })
+        </script>
+        <div id="main">
+        	<!-- #BeginLibraryItem "/library/group_list_ad.lbi" --><!-- #EndLibraryItem -->
+            <div class="multilist">
+                <!-- {if $gb_list} 如果有团购活动 -->
+                <ul class="clearfix">
+                    <!-- {foreach from=$gb_list item=group_buy name=foo} 循环团购活动开始 --> 
+                    <!-- {if $smarty.foreach.foo.iteration}-->
+                    <li {if $smarty.foreach.foo.index mod 3 eq 2}style="margin-right:0;"{/if}>
+                    	<a href="{$group_buy.url}" target="_blank">
+                            <div class="img"><img src="{$group_buy.goods_thumb}" alt="{$group_buy.goods_name|escape:html}" /></div>
+                            <h2 class="multi_tit">{$group_buy.goods_name|escape:html}</h2>
+                            <div class="detail_bg">
+                                <div class="GroupPrice f_l">￥<span>{$group_buy.price_ladder.0.price}</span></div>
+                                <div class="Discount_wrap f_l">
+                                	<span class="icon_dscnt">
+                                    	<i class="icon_dscnt_l"></i>
+                                        <em class="icon_dscnt_m">{$group_buy.zhekou}折</em>
+                                        <i class="icon_dscnt_r"></i>
+                                    </span>
+                                    市场价：<del>￥{$group_buy.market_price}</del>
+                                </div>
+                                <div class="Look f_r"><b>{$group_buy.cur_amount}人</b>已买</div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- {/if} --> 
+                    <!--{/foreach}-->
+                </ul>
+                <!-- {else} --> 
+                <span style="margin:2px 10px; font-size:14px; line-height:36px;">{$lang.group_goods_empty}</span> 
+                <!-- {/if} --> 
+                <div class="article"><!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem --></div>
+                <script type="text/javascript">
+                	$(".multilist li").each(function(){
+						$(this).hover(function(){
+							$(this).addClass("on");
+						},function(){
+							$(this).removeClass("on");
+						});
+					});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flow">
+<div class="footer">
+<div class="footerBody">
+<!-- #BeginLibraryItem "/library/page_footer_other.lbi" --><!-- #EndLibraryItem --> 
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--组合搜索 开始-->
+<!--{if $brands.1 || $price_grade.1 || $filter_attr_list}-->
+<div id="small-nav">
+	<!--{if $brands.1}-->
+	<div id="brand" class="f_l where">
+    	<div class="first">{$lang.brand}</div>
+        <ul id="brand-text">
+            <!--{foreach from=$brands item=brand}--> 
+            <!-- {if $brand.selected} -->
+            <li><span>{$brand.brand_name}</span></li>
+            <!-- {else} -->
+            <li><a href="{$brand.url}">{$brand.brand_name}</a></li>
+            <!-- {/if} --> 
+            <!--{/foreach}-->
+        </ul>
+        <div class="filter_more"><a href="javascript:;" class="where-more f_r brand_where"><span>更多</span><i></i></a></div>
+    </div>
+    <!--{/if}-->
+    
+    <!--{foreach from=$filter_attr_list item=filter_attr}-->
+    <div class="f-l where">
+    	<div class="first">{$filter_attr.filter_attr_name|escape:html}</div>
+        <ul class="where-ul">
+            <!--{foreach from=$filter_attr.attr_list item=attr}--> 
+            <!-- {if $attr.selected} -->
+            <li><span>{$attr.attr_value}</span></li>
+            <!-- {else} -->
+            <li><a href="{$attr.url}">{$attr.attr_value}</a> </li>
+            <!-- {/if} --> 
+            <!--{/foreach}-->
+        </ul>
+        <div class="filter_more"><a href="javascript:;" class="where-more f_r brand_where"><span>更多</span><i></i></a></div>
+    </div>
+    <!--{/foreach}-->
+    
+    <!--{if $price_grade.1}-->
+    <div class="f-l where">
+    	<div class="first">{$lang.price}</div>
+        <ul class="where-ul">
+            <!--{foreach from=$price_grade item=grade}--> 
+            <!-- {if $grade.selected} -->
+            <li><span>{$grade.price_range}</span></li>
+            <!-- {else} -->
+            <li><a href="{$grade.url}">{$grade.price_range}</a></li>
+            <!-- {/if} --> 
+            <!--{/foreach}-->
+        </ul>
+        <div class="filter_more"><a href="javascript:;" class="where-more f_r brand_where"><span>更多</span><i></i></a></div>
+    </div>
+    <!--{/if}-->
+</div>
+<!-- {/if} -->
+<!--组合搜索 结束-->
+
+<!-- 更多选项 -->
+<!--<div id="more_options">
+    <div id="mo_bg"></div>
+    <a href="javascript:;" id="mo_bt">更多选项<i id="mo_op"></i></a>
+</div>-->
+
+<script type="text/javascript">
+$(function(){
+	
+	$(".filter_more").each(function(){
+		var parent=$(this).parent(".where");
+		var h1=parent.css("height");
+		parent.css({height:"auto"});
+		var h2=parent.outerHeight();
+		parent.css({height:h1});
+		var done=false;
+		var ul=$(this).parent(".where").find("ul").height();
+		if(ul<=parseInt(h1)){
+			$(this).hide();	
+		}
+		$(this).click(function(){
+			var h3=parent.css("height");
+			
+			if(!done){
+				done=!done;
+				parent.stop().animate({height:h2-10});
+				$(this).find("span").text("收缩");
+				$(this).find("i").css("background-position","0 -71px");
+			}else{
+				done=!done;
+				parent.stop().animate({height:h1});
+				$(this).find("span").text("更多");
+				$(this).find("i").css("background-position","0 -65px");
+			}
+		});
+	});
+	/*
+	(function(){
+		var fn=function(){
+			var len=$(".where").length;
+			if(len<=5){
+				$("#mo_bt").hide();
+			}
+			for(var i=len-1;i>4;i--){
+				$(".where").eq(i).hide();
+			}
+		}
+		fn();
+		var done=false;
+		$("#mo_bt").click(function(){
+			if(!done){
+				$(".where").show();
+				done=!done;
+				$(this).html("精简选项"+"<i id='mo_up'></i>");
+			}else{
+				fn();
+				done=!done;
+				$(this).html("更多选项"+"<i id='mo_op'></i>");
+			}
+		});
+	})();
+	*/
+	//
+	$("#small-nav .where:last").css("border-bottom","0");
+});
+
+     </script>

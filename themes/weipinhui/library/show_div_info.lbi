@@ -1,0 +1,72 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $script_name eq 0}-->
+<b>宝贝已成功添加到购物车！</b>
+<p class="center_pop_p">购物车共有{$real_goods_count}种宝贝({$goods_number}件) &nbsp;&nbsp;&nbsp;&nbsp;合计：<span>{$goods_amount}元</span></p>
+{elseif $script_name eq 1}
+
+
+<div class="aui_outer">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="aui_border">
+    	<tbody>
+        	<tr>
+            	<td class="aui_nw"></td>
+                <td class="aui_n"></td>
+                <td class="aui_ne"></td>
+            </tr>
+            <tr>
+            	<td class="aui_w"></td>
+                <td class="aui_c">
+                	<div class="aui_inner">
+                    	<table width="100%" class="aui_dialog">
+                        	<tbody>
+                            	<tr>
+                                	<td colspan="2" class="aui_header">
+                                    	<div class="aui_titleBar">
+                                        	<div class="aui_title"></div>
+                                            <a class="success_close" href="javascript:void(0);" onClick="close_div({$goods_id},'{$goods_recommend}')">×</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td class="aui_main">
+                                    	<div id="t_cart_canvas">
+                                        	<div class="cart_result">
+                                            	<div class="cart_result_01">
+                                                	<p class="addSucess_tip">已成功添加到购物车！</p>
+                                                    <p class="cart_num">购物车共有<b>{$real_goods_count}</b>种宝贝 (<b>{$goods_number}</b>件)</p>
+                                                    <i></i>
+                                                </div>
+                                                <div class="cart_result_02"><a class="cart_account" href="./flow.php">查看购物车</a></div>
+                                            </div>
+                                       
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td class="aui_e"></td>
+            </tr>
+            <tr>
+            	<td class="aui_sw"></td>
+                <td class="aui_s"></td>
+                <td class="aui_se"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style=" width:100%; height:100%; background:#000; opacity:.2; z-index:1987; position:fixed; left:0; top:0;"></div>
+
+<script type="text/javascript">
+	$(function(){
+		var i=$(".sucess_joinCart").height();
+		$(".sucess_joinCart").css("marginTop",-i/2);
+	})
+</script>
+
+<!--<p class="addSucess_tip">已成功添加到购物车！</p>
+<p class="cart_num">购物车共有{$real_goods_count}种宝贝({$goods_number}件)</p>
+<p class="cart_price">合计：<span class="cart_priceNum">￥{$goods_amount}元</span></p>
+<a class="cart_account" href="./flow.php">去购物车结算</a>-->
+<!--{/if}-->

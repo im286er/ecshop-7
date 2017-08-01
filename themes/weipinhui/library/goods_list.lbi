@@ -1,0 +1,101 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="searchRight_title">
+  <div class="rightTitle_left">
+    <form method="GET" class="sort" name="listform">
+    <div class="f_l ProFilter" style="display:block;">
+    	<a href="javascript:;" style="display:none;" onClick="javascript:display_mode('list')"><img src="images/display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}"></a>
+        <a href="javascript:;" style="display:none;" onClick="javascript:display_mode('grid')"><img src="images/display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}"></a>
+        <a href="javascript:;" style="display:none;" onClick="javascript:display_mode('text')"><img src="images/display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}"></a>
+        
+        <a style="display:block;" class="{if $pager.sort == 'goods_id'}Sort Active{else}Sort{/if}" href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_id&order=<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->">综合</span></a> 
+		<a style="display:block;" class="{if $pager.sort == 'sales_volume'}Sort Active{else}Sort{/if}" href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=sales_volume&order=<!-- {if $pager.sort == 'sales_volume' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->">销量</a>
+        <a style="display:block;" class="{if $pager.sort == 'last_update'}Sort Active{else}Sort{/if}" href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->">最新</a>
+        <a style="display:block;" class="{if $pager.sort == 'shop_price'}Sort Active{else}Sort{/if}" href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->">价格</a> 
+    </div>
+
+    </form>
+    <div class="Next-pre" style="display:none;">
+    	<span><label><!--{foreach from=$pager.page_number key=key item=item}-->
+      <!-- {if $pager.page eq $key} -->{$key}<!-- {/if} --><!--{/foreach}--> / {$pager.page_count}</label></span>
+        <!-- {if $pager.page_prev} --><a href="{$pager.page_prev}#goods_list" id="" class="color_zc"><span>&lt;&lt;</span>{$lang.page_prev}</a><!-- {/if} -->
+        <!-- {if $pager.page_next} --><a id="" class="color_zc" href="{$pager.page_next}#goods_list">{$lang.page_next}<span>&gt;&gt;</span></a><!-- {/if} -->
+    </div>
+  </div>
+</div>
+<div class="h39" style="height:39px; display:none;"></div>
+
+<form name="compareForm" action="compare.php" method="post" onSubmit="return compareGoods(this);">
+    <div class="searchRight_body product_list pb30">
+        <ul class="y_searchList clearfix" >
+        	<!--{foreach from=$goods_list item=goods name=goods_list}--> 
+            <!--{if $goods.goods_id}-->
+            <li class="gItem_{$goods.goods_id}" {if $smarty.foreach.goods_list.index mod 3 eq 2} style="margin-right:0;"{/if}>
+            	<div class="pro_item_img">
+                	<a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" width="320" height="320"></a>
+                    <!-- {if $goods.promote_price} --><p class="pro_item_count timeBox" showday="show" value="{$goods.end_date}"></p> <!--{/if}-->
+                </div>
+                <div class="pro_item_tit"><a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><span>{$goods.zhekou}折</span>/ {$goods.name|escape:html}</a></div>
+                <div class="pro_item_info">
+                	<div class="pro_item_info_L">
+                    	<!-- {if $goods.promote_price} -->
+                        {$goods.promote_price}
+                        <!-- {else}-->
+                        {$goods.shop_price}
+                        <!--{/if}-->
+                    </div>
+                    <div class="pro_item_info_C">
+                    	<span class="icon_dscnt"><i class="icon_dscnt_l"></i><em class="icon_dscnt_m">立省：¥{$goods.jiesheng}</em><i class="icon_dscnt_r"></i></span>
+                        <del>{$goods.market_price}</del>
+                    </div>
+                    <div class="pro_item_info_R">
+                    	<span class="pro_item_count_person"><em>{$goods.sales_volume}人</em>已购买</span>
+                        <a href="javascript:addToCartShowDiv({$goods.goods_id},1,'goodsList')" class="Addcart Sub"></a>
+                    </div>
+                </div>
+                <input type="hidden" value="{$goods.goods_thumb}" name="goodsThumb" />
+            </li>
+            <!--{/if}--> 
+            <!--{/foreach}-->
+        </ul>
+    </div>
+</form>
+
+<script type="text/javascript">
+		$(".y_searchList li").hover(function(){
+			$(this).find(".Addcart").css({"display":"block"});
+			$(this).find(".pro_item_count").stop(true,false).animate({"bottom":0},300);
+		},function(){
+			$(this).find(".Addcart").css({"display":"none"});
+			$(this).find(".pro_item_count").animate({"bottom":-22+"px"},200);
+		});
+</script>
+
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<script type="text/javascript">
+window.onload = function()
+{
+  Compare.init();
+  fixpng();
+}
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>

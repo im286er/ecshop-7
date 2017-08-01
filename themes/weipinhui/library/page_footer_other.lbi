@@ -1,0 +1,158 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="footTopBox">
+    <!--{if $helps}-->
+    <div class="footTop"> 
+        <!-- {foreach from=$helps item=help_cat name=no} -->
+        <!--{if $smarty.foreach.no.iteration < 6}-->
+        <dl>
+            <dt class="Help0{$smarty.foreach.no.iteration}">{$help_cat.cat_name}</dt>
+            <dd>
+                <!-- {foreach from=$help_cat.article item=item name=no2} -->
+                <!--{if $smarty.foreach.no2.iteration < 7}-->
+                <p><a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a></p>
+                <!--{/if}-->
+                <!-- {/foreach} -->
+            </dd>
+        </dl>
+        <!--{/if}-->
+        <!-- {/foreach} -->
+        <dl class="f_client">
+        	<dt class="Help06">手机端二维码</dt>
+            {foreach from=get_advlist_position_name_pc('手机端',0,1) item=ad name=index_image}<dd class="qr"><img src="{$ad.image}" alt=""></dd> {/foreach}
+            <dd style="padding-left:18px;">访问手机端</dd>
+        </dl>
+        <dl class="f_client">
+        	<dt class="Help07">用微信扫一扫</dt>
+            {foreach from=get_advlist_position_name_pc('微信图片',0,1) item=ad name=index_image}<dd class="qr"><img src="{$ad.image}" alt=""></dd> {/foreach}
+            <dd style="padding-left:18px;">关注官方微信</dd>
+        </dl>
+    </div>
+    <!--{/if}-->
+    <script type="text/javascript">
+    	$(".footTop dl:last").css({"border":"0"});
+    </script>
+</div>
+
+<div class="BottomNav">
+	<div class="BottomNavBox">
+    	<!-- {if $navigator_list.bottom} -->
+        <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+    	<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a><span>|</span>
+        <!-- {/foreach} -->
+        <!-- {/if} -->
+    </div>
+    <script type="text/javascript">
+    	$(".BottomNavBox span:last").css("display","none");
+    </script>
+</div>
+
+<div class="footer_txt">
+  <p class="lightGrey">
+{$copyright} {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a>
+</p>
+</div>
+
+<!--友情链接 start--> 
+<!--{if $img_links  or $txt_links }-->
+<div id="bottomNav" class="box">
+  <div class="box_1">
+    <div class="links clearfix"> 
+      <!--开始图片类型的友情链接{foreach from=$img_links item=link}--> 
+      <a href="{$link.url}" target="_blank" title="{$link.name}"><img src="{$link.logo}" alt="{$link.name}" border="0" /></a> 
+      <!--结束图片类型的友情链接{/foreach}--> 
+      <!-- {if $txt_links} --> 
+      <!--开始文字类型的友情链接{foreach from=$txt_links item=link}--> 
+      [<a href="{$link.url}" target="_blank" title="{$link.name}">{$link.name}</a>] 
+      <!--结束文字类型的友情链接{/foreach}--> 
+      <!-- {/if} --> 
+    </div>
+  </div>
+</div>
+<!--{/if}--> 
+<!--友情链接 end-->
+
+
+
+<!--底部导航 start-->
+<div id="bottomNav" class="box" style="display:none">
+  <div class="bNavList clearfix">
+    <div class="f_l"> 
+      <!-- {if $navigator_list.bottom} --> 
+      <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} --> 
+      <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if} >{$nav.name}</a> 
+      <!-- {if !$smarty.foreach.nav_bottom_list.last} --> 
+      - 
+      <!-- {/if} --> 
+      <!-- {/foreach} --> 
+      <!-- {/if} --> 
+    </div>
+  </div>
+</div>
+<!--底部导航 end-->
+
+
+<!--版权 start-->
+<div id="footer" style="height:0; width:1px; overflow:hidden; background:none; margin:0;">
+  <div class="text"> {$copyright}<br />
+    {$shop_address} {$shop_postcode} 
+    <!-- 客服电话{if $service_phone} --> 
+    Tel: {$service_phone} 
+    <!-- 结束客服电话{/if} --> 
+    <!-- 邮件{if $service_email} --> 
+    E-mail: {$service_email}<br />
+    <!-- 结束邮件{/if} --> 
+    <!-- QQ 号码 {foreach from=$qq item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束QQ号码 --> 
+    <!-- 淘宝旺旺 {foreach from=$ww item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a> 
+    <!-- {/if} --> 
+    <!--{/foreach} 结束淘宝旺旺 --> 
+    <!-- Yahoo Messenger {foreach from=$ym item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://edit.yahoo.com/config/send_webmesg?.target={$im}n&.src=pg" target="_blank"><img src="../images/yahoo.gif" width="18" height="17" border="0" alt="Yahoo Messenger" /> {$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束Yahoo Messenger --> 
+    <!-- MSN Messenger {foreach from=$msn item=im} --> 
+    <!-- {if $im} --> 
+    <img src="../images/msn.gif" width="18" height="17" border="0" alt="MSN" /> <a href="msnim:chat?contact={$im}">{$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束MSN Messenger --> 
+    <!-- Skype {foreach from=$skype item=im} --> 
+    <!-- {if $im} --> 
+    <img src="http://mystatus.skype.com/smallclassic/{$im|escape:url}" alt="Skype" /><a href="skype:{$im|escape:url}?call">{$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} --><br />
+    <!-- ICP 证书{if $icp_number} --> 
+    {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+    <!-- 结束ICP 证书{/if} --> 
+    {insert name='query_info'}<br />
+    <br />
+    {if $stats_code}
+    <div align="left">{$stats_code}</div>
+    {/if}
+    <div align="left"  id="rss"><a href="{$feed_url}"><img src="../images/xml_rss2.gif" alt="rss" /></a></div>
+  </div>
+</div>
+
+<script>
+$(function(){
+	isIe6 = false;
+	
+	if ('undefined' == typeof(document.body.style.maxHeight)) {
+		isIe6 = true;
+	}
+
+	var offset = $("#topcontrol").offset();		
+	var bottom = $("#topcontrol").css("bottom");		
+
+	$("#topcontrol #sider_returntop").click(function(){
+		$('body,html').animate({scrollTop:0},500);
+		return false;
+	});
+
+})
+</script>

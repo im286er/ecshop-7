@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<ul>
+    <!--{foreach from=$promotion_goods item=goods name=no}-->
+    <li class="f_l" {if $smarty.foreach.no.index mod 3 eq 2} style="margin-right:0;"{/if}>
+        <div class="s1_pic">
+        	<a class="J_to_list" href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"></a>
+            <div class="s_info"><a href="#" target="_blank"><span>查看介绍</span><i class="s_info_story_arrow"></i></a></div>
+        </div>
+        <div class="s1_info">
+        	<span class="s1_info_name">{$goods.name|escape:html}</span>
+            <span class="s1_info_time"><span class="s_time_icon2 timeBox" value="{$goods.promote_end_date}" showday="show"></span></span>
+        </div>
+    </li>
+    <!--{/foreach}-->
+</ul>

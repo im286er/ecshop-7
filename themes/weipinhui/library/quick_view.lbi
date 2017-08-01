@@ -1,0 +1,63 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="hd"><a></a></div>
+<div class="bd">
+  <div class="pop_info">
+    <div class="pop_name"><a href="#">{$goods.goods_name}</a></div>
+    <div class="pop_comment Percent"> <b>用户评价</b>
+      <ul class="stars">
+        <li><span id="spanGrad" style="width:{$comment_percent.haoping_percent}%"></span></li>
+      </ul>
+      <span class="pop_score"><strong>{$comment_percent.haoping_percent}%</strong></span> </div>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="zx">
+      <tbody>
+        <!-- {foreach from=$properties item=property_group} --> 
+        <!-- {foreach from=$property_group item=property name=foo} --> 
+        <!-- {if ($smarty.foreach.foo.iteration mod 2) eq 1 } -->
+        <tr><!-- {/if} -->
+          <td width="65"><span>{$property.name|escape:html}</span></td>
+          <td width="35%"> {$property.value} </td>
+          
+          <!-- {if ($smarty.foreach.foo.iteration mod 2) eq 0} --></tr>
+        <!-- {/if} --> 
+        <!-- {/foreach}--> 
+        <!-- {/foreach}-->
+      </tbody>
+    </table>
+    <div class="pop_view"><a href="{$goods.url}">查看更多详情 &gt;&gt;</a></div>
+  </div>
+  <div class="pop_img"> <a href="{$goods.url}"><img src="{$goods.goods_img}" width="150" height="150"></a>
+    <div class="pop_price">价格：<strong> <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->{$goods.promote_price}<!--{else}-->{$goods.shop_price}<!--{/if}--></strong></div>
+    <div class="pop_price_old">原价：<strong>{$goods.market_price}</strong></div>
+    <div class="pop_num"> <a href="javascript:void(0)" onclick="decrementAll();">-</a>
+      <input class="shuzik" name="product_amount" id="product_amount" onchange="buyButtonNumChange('product_amount')" type="text" onkeyup="inputOnlyNum(this, 1, 999);" value="1">
+      <a href="javascript:void(0)" onclick="incrementAll();">+</a> </div>
+    <div class="pop_addcart"> <a href="javascript:addToCartShowDiv({$goods.goods_id},1,'promotion')"></a>
+      <input type="hidden" value="" id="MjsCommodityId">
+      <input type="hidden" value="1" id="MjsAssignCommodityAmount">
+    </div>
+  </div>
+</div>
+<script>	
+	//当前效果代码
+	$("#displayBox .hd a").click(function(){
+		$("#displayBox").hide(300)
+	});
+	//关闭隐藏盒子			
+	$("#displayBox").blur(function(){
+		$(this).hide();
+	})
+	var isIE6 = !!window.ActiveXObject&&!window.XMLHttpRequest;
+	if(isIE6){
+		$(window).scroll(function(){ 
+			$("#displayBox").css("top", $(document).scrollTop()+100); 
+		});
+	}
+			
+	var isIE6 = !!window.ActiveXObject&&!window.XMLHttpRequest;
+	if(isIE6){
+		$(window).scroll(function(){ 
+			$(".sucess_joinCart").css("top", $(document).scrollTop()+10); 
+		});
+	}
+</script> 

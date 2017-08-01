@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="category_banner">
+	<div class="category_bannerBox">
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'category_1'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' />";
+}
+?>
+	</div>
+    <script type="text/javascript">
+		$(function(){
+			var Xwid=$(window).width();
+			var Wimg=$(".category_bannerBox img").width();
+			var mLeft=(Xwid-Wimg)/2;
+			$(".category_bannerBox img").css("left",mLeft);
+			});
+    </script>
+</div>

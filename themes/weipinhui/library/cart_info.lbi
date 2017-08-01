@@ -1,0 +1,59 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="Cart shop_txt">
+	<div class="CartTit"><a class="header_cart_title" href="flow.php">特卖会购物车</a><a class="header_cart_num" href="flow.php">{$str}</a></div>
+	<!-- {if $goods} -->
+	<div class="CartCon shopBody" id="shopBody">
+		<div class="CartBox">
+			<ul>
+				<!-- {foreach from=$goods item=goods name=goods} -->
+				<li class="shopWhite" onMouseOver="show_del(this)" onMouseOut="hide_del(this)">
+					<div class="shopLi_img"><a href="{$goods.url}" title="{$goods.goods_name}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}"></a></div>
+					<div class="shopLi_txt"><p class="cs_list_name"><a href="{$goods.url}" title="{$goods.short_name}">{$goods.short_name}</a></p><p class="shopLi_pink">{$goods.goods_attr}</p></div>
+                    <div class="shopLi_num"><span>{$goods.goods_price}</span><span style="color:#999">×{$goods.goods_number}</span></div>
+				</li>
+				<!-- {/foreach} -->
+			</ul>
+			<div class="shopSet">
+        		<div class="set_txt"><p>共<b>{$str}</b>件商，总计¥<span class="set_gray">{$amount}</span></p></div>
+            	<div class="set_btn"><a href="flow.php">去购物车结算</a></div>
+        	</div>
+		</div>
+	</div>
+	<!-- {else} -->
+	<div class="CartCon shopBody" id="shopBody">
+		<div class="CartBox">
+			<p class="shopNo">购物车内还没有商品，赶快选购吧！</p>
+		</div>
+	</div>
+	<!-- {/if} -->
+</div>
+
+<script type="text/javascript">
+function deleteCartGoods(rec_id){
+	Ajax.call('delete_cart_goods.php', 'id='+rec_id, deleteCartGoodsResponse, 'POST', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function deleteCartGoodsResponse(res){
+	if (res.error){
+		alert(res.err_msg);
+	}else{
+		$("#ECS_CARTINFO").html(res.content);
+	}
+}
+
+$(function(){
+	$("#ECS_CARTINFO li.shopWhite").mouseenter(function(){
+		$(this).removeClass("shopWhite");
+		$(this).addClass("shopGray");
+	});
+
+	$("#ECS_CARTINFO li.shopWhite").mouseleave(function(){
+		$(this).removeClass("shopGray");
+		$(this).addClass("shopWhite");
+	});	
+})
+</script>
+

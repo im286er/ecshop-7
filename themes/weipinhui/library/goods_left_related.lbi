@@ -1,0 +1,9 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="sidelist">
+	<h3>相关分类</h3>
+    <ul>
+    	<!--{foreach from=$related_cat item=cat}-->
+    	<li><a href="{$cat.url}">{$cat.cat_name}</a></li>
+        <!--{/foreach}-->
+    </ul>
+</div>

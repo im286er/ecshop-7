@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 
+<div id="slideBox" class="slideBox IndexAd">
+    <div class="hd">
+        <ul>
+        	<li>•</li><li>•</li><li>•</li><li>•</li><li>•</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <!--{foreach from=$flash name=myflash item=flash}-->
+            <li style="background:url({$flash.src}) center 0 no-repeat;"><a href="{$flash.url}" target="_blank"></a></li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+    <!-- 下面是前/后按钮代码-->
+    <a class="fbc_btn prev" href="javascript:void(0)"></a>
+    <a class="fbc_btn next" href="javascript:void(0)"></a>
+</div>
+
+<script type="text/javascript">
+	jQuery(".slideBox").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:true,trigger:"click"});
+	//
+	$(".small-slider-pic").find(".Line:last").css("display", "none");
+	//
+	var aimg=$(".small-slider-pic").find("a");
+	aimg.hover(function(){
+		aimg.stop(true,false).animate({"opacity":0.7});
+		$(this).stop(true,false).animate({"opacity":1});
+	},function(){
+		aimg.stop(true,false).animate({"opacity":1});
+	});
+	//
+	var Xwid=$(window).width();
+	var left=(Xwid-980)/2;
+	$(".prev").css("left",left+5);
+	$(".next").css("right",left+5);
+	//
+	$(".fbc_btn").hover(function(){
+		$(this).stop(true,false).animate({"opacity":1});
+	},function(){
+		$(this).stop(true,false).animate({"opacity":0.15});
+	});
+	$(".IndexAd").hover(function(){
+		$(this).children(".prev").stop(true,false).animate({"left":left-7,"opacity":0.15});
+		$(this).children(".next").stop(true,false).animate({"right":left-7,"opacity":0.15});
+	},function(){
+		$(this).children(".prev").stop(true,false).animate({"left":left+7,"opacity":0});
+		$(this).children(".next").stop(true,false).animate({"right":left+7,"opacity":0});
+	});
+</script>

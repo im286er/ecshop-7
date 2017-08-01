@@ -1,0 +1,7 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<ul>
+    <li>{insert name='ads' id=15 num=1}</li>
+    <li>{insert name='ads' id=18 num=1}</li>
+    <li>{insert name='ads' id=19 num=1}</li>
+    <li style="margin-right:0;">{insert name='ads' id=20 num=1}</li>
+</ul>

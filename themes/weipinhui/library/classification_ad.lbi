@@ -1,0 +1,94 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 
+<ul>
+	<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_1'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_2'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_3'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_4'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_5'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+<?php
+if($_REQUEST['id'])
+{
+$id = $_REQUEST['id'];
+}else{
+$id = $_REQUEST['category'];
+}
+$sql = "select ap.ad_width,ap.ad_height,ad.ad_name,ad.ad_code,ad.ad_link from ".$GLOBALS['ecs']->table('ad_position')." as ap left join ".$GLOBALS['ecs']->table('ad')." as ad on ad.position_id = ap.position_id where ad.ad_name='".'classify_6'."_".$id."' and ad.media_type=0 and UNIX_TIMESTAMP()>ad.start_time and UNIX_TIMESTAMP()<ad.end_time and ad.enabled=1";
+$res = $GLOBALS['db']->getAll($sql);
+foreach($res AS $v)
+{                      
+echo  "<li><a href='".$v['ad_link']."' target='_blank'><img src='data/afficheimg/".$v['ad_code']."' width='".$v['ad_width']."' height='".$v['ad_height']."' /></a></li>";
+}
+?>
+
+</ul>

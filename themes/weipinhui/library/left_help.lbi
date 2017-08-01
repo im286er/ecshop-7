@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{if $helps}-->
+<div class="sideMenu">
+	<!-- {foreach from=$helps item=help_cat name=cat key=key} -->
+    <dl class="accountSideOption1">
+    	<dt class="transaction_manage">{$help_cat.cat_name}</dt>
+        <dd>
+        	<ul>
+            	<!-- {foreach from=$help_cat.article item=item} -->
+                <li><a {if $id eq $item.article_id} class="sell" {/if} href="{$item.url}" title="{$item.title|escape:html}"> {$item.short_title}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </dd>
+    </dl>
+    <!-- {/foreach} -->
+</div>
+<!--{/if}--> 
+
+<script type="text/javascript">
+				$(".Article li:last").css("border-bottom", "0");
+			</script> 

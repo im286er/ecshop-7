@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h2 class="bt_con_title bt_con_title4">关于唯品会</h2>
+<div class="BrandYoushi SlideTxtBox">
+    <div class="hd">
+        <ul>
+            <li><span class="s1">1</span></li>
+            <li><span class="s2">2</span></li>
+            <li><span class="s3">3</span></li>
+            <li><span class="s4">4</span></li>
+            <li><span class="s5">5</span></li>
+            <li><span class="s6">6</span></li>
+            <li><span class="s7">7</span></li>
+        </ul>
+    </div>
+    <div class="bd">
+        <div><img src="images/bt_img1.jpg" /></div>
+        <div><img src="images/bt_img2.jpg" /></div>
+        <div><img src="images/bt_img3.jpg" /></div>
+        <div><img src="images/bt_img4.jpg" /></div>
+        <div><img src="images/bt_img5.jpg" /></div>
+        <div><img src="images/bt_img6.jpg" /></div>
+        <div><img src="images/bt_img7.jpg" /></div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(".SlideTxtBox").slide({autoPlay:true,delayTime:0});
+</script>

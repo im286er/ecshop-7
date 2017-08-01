@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" >
+<link rel="icon" href="animated_favicon.gif" type="image/gif" >
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="MagicZoom.css" rel="stylesheet" type="text/css"/>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,left_goodslist.js'}
+<script>
+function changeAtt(t) {
+t.lastChild.checked='checked';
+for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+        if (t.parentNode.childNodes[i].className == 'cattsel') {
+            t.parentNode.childNodes[i].className = '';
+        }
+    }
+t.className = "cattsel";
+changePrice();
+}
+</script>
+<script type="text/javascript">
+function $id(element) {
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str){
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+  for(var i=0;i<bt.length;i++){
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+    bt[i].onclick=function(){
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++){
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+</head>
+<body style="background:#fcfafe;">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='easydialog.min.js,magiczoom.js,miqi_goods.js,magiczoomplus.js'}
+<div class="block"> 
+  <!--当前位置 start-->
+  <div class="content_title search_title">
+    <div class="block">
+      <div id="ur_here"> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --> </div>
+    </div>
+  </div>
+  <!--当前位置 end-->
+  <div class="content_detailed">
+    <div class="contentBody">
+      <div class="mainBody ProductDetail" style="overflow:visible;">
+        <div id="goodsInfo" class="clearfix">
+
+            
+             <div class="imgInfo">
+                      <!-- {if $pictures.0.img_url}-->
+    <a href="{$pictures.0.img_url}" id="Zoomer" class="MagicZoomPlus" rel="selectors-effect:false;zoom-fade:true;background-opacity:70;zoom-width:450;zoom-height:450;caption-source:img:title;thumb-change:mouseover" title="">
+    <img id="img_url" name="goods_img" src="{$pictures.0.img_url}" alt="{$goods.goods_name|escape:html}" class="thumb" />
+    </a>
+    <!-- {else} -->
+    <img id="img_url" name="goods_img" src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}" class="thumb" />
+    <!-- {/if}-->
+     <div class="blank5"></div>
+                 <!--相册 START-->
+        	<!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+               <!--相册 END-->
+            </div>
+            <!-- 商品参数 -->
+              <div class="textInfo">
+               <div class="pi_attr_box">
+                <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >          
+                <!-- {if $specification} -->
+                <div id="specification_box">
+                	<div class="specification_boxCon">
+                        <ul class="detail_detail catt">
+                            <!-- {* 开始循环所有可选属性 *} -->
+                            <!-- {foreach from=$specification item=spec key=spec_key} -->
+                            <li style="height:auto; overflow:hidden; margin-top:10px;">
+                                <div class="detail_title">{$spec.name}：</div>
+                                <div class="detail_choose">
+                                <!-- {* 判断属性是复选还是单选 *} -->
+                                <!-- {if $spec.attr_type eq 1} -->
+                                
+                                    <!-- {if $cfg.goodsattr_style eq 1} -->
+                                    
+                                        <!-- {foreach from=$spec.values item=value key=key} -->
+                                        <a style=" text-decoration:none" {if $key eq 0} class="cattsel"{/if} onclick="changeAtt(this)" href="javascript:;" name="{$value.id}" title="{$value.label}" >{$value.label}
+                                        <i class="a-active"></i>
+                                        <input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}"  {if $key eq 0}checked{/if} /></a>
+                                        <!-- {/foreach} -->
+                                        <input type="hidden" name="spec_list" value="{$key}" />
+                                    <!-- {else} -->
+                                        <select name="spec_{$spec_key}" onchange="changePrice()">
+                                        <!-- {foreach from=$spec.values item=value key=key} -->
+                                        <option label="{$value.label}" value="{$value.id}">{$value.label} {if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if}{if $value.price neq 0}{$value.format_price}{/if}</option>
+                                        <!-- {/foreach} -->
+                                        </select>
+                                        <input type="hidden" name="spec_list" value="{$key}" />
+                                    <!-- {/if} -->
+                                
+                                <!-- {else} --> 
+                                    <!-- {foreach from=$spec.values item=value key=key} -->
+                                    
+                                    <label for="spec_value_{$value.id}">
+                                    <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" />
+                                    {$value.label}</label>
+                                    <!-- {/foreach} -->
+                                <input type="hidden" name="spec_list" value="{$key}" />
+                                <!-- {/if} -->
+                                </div>
+                            </li>
+                            <!-- {/foreach}-->
+                            <!-- {* 结束循环可选属性 *} -->
+                        </ul>
+                        <div class="blank5"></div>
+                        <center style="font-size:14px;" >[<a class="f6" href="javascript:addToCartShowDiv({$goods.goods_id},1,'goodsinfo');">购买</a>]&nbsp;&nbsp;[<a class="f6" id="close_spec_box" href="javascript:void(0);">取消</a>]</center>
+                    </div>
+                	<div class="specification_boxBj"></div>
+                </div>
+                <!-- {/if} -->
+                <!--2014812-->
+                <div class="pi_title_box clearfix">
+                        <div class="pib_title">
+                        <p class="pib_title_detail">{$goods.goods_style_name}</p>
+                        </div>
+                 </div>
+                 <div class="pi_price_box">
+                      <span class="pbox_price">
+                      <i class="pbox_yen">¥</i>
+                      <em id="ECS_GOODS_AMOUNT"><!--{if $goods.promote_price neq "￥<span>0</span>"}-->{$goods.promote_price}<!-- {else}-->{$goods.shop_price}<!--{/if}--></em>
+                      </span>
+                      <span class="pbox_off">{$goods.zhekou}折</span>
+                      <span class="pbox_market">
+                      市场价:¥
+                      <del>{$goods.market_price}</del>
+                      </span>
+                  </div>
+                                  <div id="J_proData_box" >
+                    <dl class="other clearfix">
+                        <dt class="other_name">编码：</dt>
+                        <dd class="other_box"> 
+            {$goods.goods_sn}
+            </dd>
+                    </dl>
+                </div>
+				
+				
+				
+              
+              <!-- {* 开始循环所有可选属性 *} -->
+
+
+ <script language="javascript">
+  function changeAtt(t,src,key) {
+    
+	document.getElementById('spec_value_'+src).checked='checked';
+    var itemObj = document.getElementById("catt_"+key);
+	var elems = itemObj.getElementsByTagName("a");
+
+
+    for (i = 0; i < elems.length; i ++ )
+	{
+		var prefix = elems[i].name.substr(0, 7);
+		if (prefix == 'spec_a_')
+		{
+		   elems[i].className = '';
+		}
+	}
+
+	t.className = "cattsel";
+	changePrice();
+}
+</script>
+  
+
+
+
+           {if $specification}
+            <div class="propertySelect clearfix" id="propertySelect">
+            <!-- {foreach from=$specification item=spec key=spec_key} -->
+              <strong>{$spec.name}：</strong>
+              <div class="catt" id="catt_{$spec_key}">
+              <!-- {* 判断属性是复选还是单选 *} -->
+              <!-- {if $spec.attr_type eq 1} -->
+              <!-- {if $cfg.goodsattr_style eq 1} -->
+              <!-- {foreach from=$spec.values item=value key=key} -->
+               <a class='hover {if $key eq 0}cattsel{/if}{if $value.thumb_url} colorImg{/if}' {if $value.thumb_url} rev={$value.img_original} rel=goodsPic {else}href="#"{/if} title="{$value.label}" style="cursor:pointer" name="spec_a_{$value.id}" onclick="changeAtt(this,{$value.id},{$spec_key})">
+               <p {if $value.thumb_url}class="padd"{elseif $value.hex_color neq ''}style="background:#{$value.hex_color}; height:45px; width:45px"{/if}>
+              {if $value.thumb_url}
+              <img src="{$value.thumb_url}" width="50" height="50" alt="{$value.label}">
+              {elseif $value.hex_color}
+              {else}
+               <em>{$value.label}</em>
+              {/if}
+              <i></i>
+              </p>
+             <input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $key eq 0}checked{/if} />
+              </a>
+              <!-- {/foreach} -->
+              <input type="hidden" name="spec_list" value="{$key}" />
+              <!-- {else} -->
+              <select name="spec_{$spec_key}">
+              <!-- {foreach from=$spec.values item=value key=key} -->
+              <option label="{$value.label}" value="{$value.id}">{$value.label} {if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if}{if $value.price neq 0}{$value.format_price}{/if}</option>
+              <!-- {/foreach} -->
+              </select>
+              <input type="hidden" name="spec_list" value="{$key}" />
+              <!-- {/if} -->
+              <!-- {else} -->
+              <!-- {foreach from=$spec.values item=value key=key} -->
+              <label for="spec_value_{$value.id}">
+              <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" />
+              {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}] </label>
+              <br />
+              <!-- {/foreach} -->
+              <input type="hidden" name="spec_list" value="{$key}" />
+              <!-- {/if} -->
+            </div>
+            <div class="blank"></div>
+            <!-- {/foreach} -->
+         </div>
+         {/if}
+
+
+
+
+
+
+
+
+      <!-- {* 结束循环可选属性 *} -->
+              
+                  
+                  
+                 <!--2014812-->
+                <!-- 价格 -->
+                <div class="bt_infos_r_b">
+                	<span class="bt_counts">数量：</span>
+                    <a onclick="buyNumber.minus()" href="javascript:;" class="minus"></a><input name="number" type="text" value="1" defaultnumber="1" onkeyup="inputOnlyNum(this, 1,999);" id="product_num" class="inp_num"><a onclick="buyNumber.plus()" href="javascript:;" class="plus"></a>
+                    <div id="detail_store"><div class="center_shop_btn"> <a {if $specification}href="javascript:;"{else}href="javascript:addToCartShowDiv({$goods.goods_id},1,'goodsinfo');"{/if}class="Sub"></a></div></div>
+					<script type="text/javascript">
+                    	// add by liuguichun 2011-7-19
+                    	var buyNumber = {
+                    		maxNumber : 100,
+                    		minNumber : 1,
+							defaultNumber : function(){
+								var defaultnumber = $('#product_num').attr('defaultnumber');
+								defaultnumber = parseInt(defaultnumber)
+								if(defaultnumber < 1){
+									defaultnumber = 1;
+								}
+								return defaultnumber;
+							},
+                                                                                                        
+                    		goodNumber : function(num){
+                    			if(typeof(num) == 'number'){
+								
+                    			$('#product_num').val(num);
+									changePrice();
+                    			}else{
+                    				return parseInt($('#product_num').val());
+                    			}                                                                                
+                    		},
+							
+                    		plus : function(){
+                    			var num = buyNumber.goodNumber() + buyNumber.defaultNumber();
+                    			if(num <= buyNumber.maxNumber){
+                    				buyNumber.goodNumber(num);
+                    			}
+                    		},
+                    		minus : function(){
+                    			var num = buyNumber.goodNumber() - buyNumber.defaultNumber();
+                    			if(num >= buyNumber.minNumber){
+                    				buyNumber.goodNumber(num);
+                    			}
+                    		}                                                                                
+                    	}
+                    </script>
+                </div>
+
+                </form>
+              </div>
+              <div class="blank"></div>
+              <div id="J_detailShare_wrap" class="pi_share_box">
+                    <div class="car_share_box">
+                          <span class="share_sns_wrap ">            <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a></div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></span>
+                    </div>
+              </div>
+              <!--分享end-->
+               <div id="J_safeguard_icon" class="pi_promise_box clearfix">
+                    <ul class="pi_promise_list new_guest">
+                    <li class="pi_promise_item item_percent">
+                    <a target="_blank" href="#">100%正品</a>
+                    </li>
+                    <li class="pi_promise_item item_7day">
+                    <a target="_blank" href="#">七天无理由放心退</a>
+                    </li>
+                    <li class="pi_promise_item item_free">
+                    <a target="_blank" href="#">退货返运费</a>
+                    </li>
+                    </ul>
+                </div>
+                
+              </div>
+              <!--text end-->
+                    <input type="hidden" value="{$goods.goods_img}" name="goodsThumb" />
+
+        </div>
+      </div>
+
+    </div>
+    <div class="detail_middle ">
+      <div class="block goodsCon clearfix"> 
+        <!--left start-->
+        <div class="AreaL">
+        	<!-- #BeginLibraryItem "/library/goods_youshi.lbi" --><!-- #EndLibraryItem -->
+            
+            <!--商品描述，商品属性 START-->
+          <div class="inDetail_boxOut ">
+            <DIV class="inDetail_box">
+              <div class="fixed_out">
+                <div class="inLeft_btn fixed" id="inner">
+                	<div style="width:1000px;">
+                      <ul>
+                        <li class="current">商品参数</li>
+                        <li>商品详情</li>
+                        <li>用户评价</li>
+                        <li style="display:none;"></li>
+                      </ul>
+                      <div class="inLeft_btn_right">
+                        <span class="bt_fixed_price" id="gdp">{if $goods.promote_price}{$goods.promote_price}{else}{$goods.shop_price}{/if}</span>
+                        <a href="javascript:addToCartShowDiv({$goods.goods_id},1,'promotion')" class="bt_fixed_buy Sub">加入购物车</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="h40" style="height:43px; display:none;"></div>
+              </div>
+<script type="text/javascript">
+	var obj11 = document.getElementById("inner");
+	var top11 = getTop(obj11);
+	var isIE6 = /msie 6/i.test(navigator.userAgent);
+	window.onscroll = function(){
+		var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		if (bodyScrollTop > top11){
+			obj11.style.position = (isIE6) ? "absolute" : "fixed";
+			obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "0px";
+			//$("#inner").addClass("hover");
+			$("#inner").css({"width":"100%","z-index":99,"left":0,});
+			$(".h40").css({"display":"block"});
+			$(".inLeft_btn").find(".inLeft_btn_right").css({"display":"block"});
+			$(".inLeft_btn ul").css({"border-left":"1px solid #999"});
+		} else {
+			obj11.style.position = "absolute";
+			//$("#inner").removeClass("hover");
+			$(".h40").css({"display":"none"});
+			$(".inLeft_btn").find(".inLeft_btn_right").css({"display":"none"});
+			$(".inLeft_btn ul").css({"border":0});
+		}
+	}
+	function getTop(e){
+		var offset = e.offsetTop;
+		if(e.offsetParent != null) offset += getTop(e.offsetParent);
+		return offset;
+	}
+</script>
+              <div id="no_try_record" class="ProBox js_nn_lc_con">
+              	<!-- 商品参数 -->
+              	<div class="BusinessInfo ProDetailBox Propar">
+					<h2 class="bt_con_title bt_con_title0">
+						商品参数
+					</h2>
+
+            <ul class="format">
+            <!--{if $properties}--> 
+                  <!-- {foreach from=$properties item=property_group key=key} --> 
+                  <!-- {foreach from=$property_group item=property} -->
+                  <li style="float:left; width:33%;"><span>{$property.name|escape:html}：</span><a class="track" href="javascript:void(0);">{$property.value}</a></li>
+                  <!-- {/foreach}--> 
+                  
+                  <!-- {/foreach}--> 
+                  <!-- {/if} -->
+          </ul>
+		  	<div style="clear:both"></div>
+                </div>
+                
+                <!-- 商品详情 -->
+                <div class="BusinessInfo ProDetailBox">
+				
+					<h2 class="bt_con_title bt_con_title1">
+						商品详情
+					</h2>
+				
+                	{$goods.goods_desc}
+                </div>
+                
+
+                
+                <!-- 用户评价 -->
+                <div class="BusinessInfo ProDetailBox">
+                	<h2 class="bt_con_title bt_con_title2">用户评价</h2>
+                        <!--商品评分 开始-->
+                  <div id="i-comment">
+                    <div class="rate"> <strong>{$comment_percent.haoping_percent}%</strong> <br>
+                      好评度 </div>
+                    <div class="percent">
+                      <dl>
+                        <dt>好评</dt>
+                        <dd class="d1">
+                          <div style="width: {$comment_percent.haoping_percent}%;"></div>
+                        </dd>
+                        <dd class="d2"> {$comment_percent.haoping_percent}%</dd>
+                      </dl>
+                      <dl>
+                        <dt>中评</dt>
+                        <dd class="d1">
+                          <div style="width: {$comment_percent.zhongping_percent}%;"></div>
+                        </dd>
+                        <dd class="d2"> {$comment_percent.zhongping_percent}%</dd>
+                      </dl>
+                      <dl>
+                        <dt>差评</dt>
+                        <dd class="d1">
+                          <div style="width: {$comment_percent.chaping_percent}%;"></div>
+                        </dd>
+                        <dd class="d2"> {$comment_percent.chaping_percent}%</dd>
+                      </dl>
+                    </div>
+                    <div class="btns">
+                      <a href="javascript:void(0);" class="btn-comment" id="showcommentform">我要评价</a> </div>
+                    <div class="clear"></div>
+                  </div>
+                  <!--商品评分 结束-->
+                  <div class="comment_body " > <!-- #BeginLibraryItem "/library/comments.lbi" --> {insert_scripts files='transport_jquery.js,utils.js'}
+                    <div id="ECS_COMMENT"> {* ECSHOP 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id}</div>
+                    <!-- #EndLibraryItem --> </div>
+                </div>
+                
+              </div>
+            </DIV>
+          </div>
+          <div class="blank"></div>
+          <!--商品描述，商品属性 END--> 
+            
+    </div>
+        <!--left end--> 
+        
+        <!--right start-->
+        <div class="AreaR" style=" overflow:hidden">
+        	<!-- TemplateBeginEditable name="买了的人还买了" -->
+<!-- #BeginLibraryItem "/library/bought_goods.lbi" -->
+
+<!-- {if $bought_goods} -->
+<div class="box BoughtGoods">
+	<div class="box_1">
+		<h3><span>{$lang.shopping_and_other}</span></h3>
+		<div class="BoughtGoodsCon">
+        	<ul>
+                <!--{foreach from=$bought_goods item=bought_goods_data}-->
+                <li>
+                    <a href="{$bought_goods_data.url}"><img src="{$bought_goods_data.goods_thumb}" alt="{$bought_goods_data.goods_name}" width="210" height="210" /></a>
+                    <p><a href="{$bought_goods_data.url}" title="{$bought_goods_data.goods_name}">{$bought_goods_data.short_name}</a></p> 
+                    <span class="price-vipshop">
+                        <!-- {if $goods.promote_price} -->
+                        ￥{$goods.shop_price}
+                        <!-- {else}-->
+                        ￥{$goods.seckill_price}
+                        <!--{/if}-->
+                    </span>
+                    <span class="price-market">{$goods.market_price}</span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+		</div>
+	</div>
+</div>
+<!-- {/if} -->
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+		
+        <!-- #BeginLibraryItem "/library/recommend_best_goods.lbi" --><!-- #EndLibraryItem -->
+        
+        <!-- TemplateBeginEditable name="最近浏览" -->
+<!-- #BeginLibraryItem "/library/history.lbi" -->
+
+<div class="sidelist HistroyBox" id='history_div'>
+	<h3>{$lang.view_history}</h3>
+    <div class="SimilarProReco HistroyCon" id='history_list'>
+    	<ul> {insert name='history'} </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
+{
+    document.getElementById('history_div').style.display='none';
+}
+else
+{
+    document.getElementById('history_div').style.display='block';
+}
+function clear_history()
+{
+Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
+}
+function clear_history_Response(res)
+{
+document.getElementById('history_list').innerHTML = '{$lang.no_history}';
+}
+
+</script>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+
+        <script type="text/javascript">
+        	$(".BoughtGoods").each(function(){
+				$(this).find("li:last").css({"border":0});
+				$(this).find("dl:last").css({"border":0});
+			});
+        </script>
+        </div>
+        <!--right end--> 
+      </div>
+    </div>
+  </div>
+  <div class="blank5"></div>
+</div>
+<div class="footer">
+  <div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --></div>
+</div>
+<div class="sucess_joinCart" id="addtocartdialog_retui_{$goods.goods_id}_promotion"></div>
+</body>
+<script type="text/javascript">
+
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+<!-- {literal} -->
+onload = function(){
+  changePrice();
+  fixpng();
+  try { onload_leftTime(); }
+  catch (e) {}
+}
+
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+
+  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+    if (document.getElementById('ECS_GOODS_AMOUNT'))
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+	   document.getElementById('gdp').innerHTML = res.result;
+  }
+}
+<!-- {/literal} -->
+</script>
+
+
+</html>

@@ -1,0 +1,37 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="m_advert clearfix">
+	<div class="m_ad_carousel SlideBox">
+    	<div class="bd">
+        	<ul>
+            	<li>{insert name='ads' id=77 num=1}</li>
+                <li>{insert name='ads' id=78 num=1}</li>
+                <li>{insert name='ads' id=79 num=1}</li>
+            </ul>
+        </div>
+        <div class="hd">
+        	<ul>
+        		<li>●</li><li>●</li><li>●</li>
+            </ul>
+        </div>
+        <a class="m_ad_carousel_sub prev" href="javascript:void(0)">‹</a>
+        <a class="m_ad_carousel_sub next" href="javascript:void(0)">›</a>
+    	<script type="text/javascript">
+        	jQuery(".SlideBox").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:true,trigger:"click"});
+			//
+			$(".m_ad_carousel_sub").css({"opacity":0});
+			$(".m_ad_carousel").hover(function(){
+				$(".m_ad_carousel_sub").stop(true,false).animate({"opacity":0.15});
+			},function(){
+				$(".m_ad_carousel_sub").stop(true,false).animate({"opacity":0});
+			});
+			$(".m_ad_carousel_sub").hover(function(){
+				$(this).stop(true,false).animate({"opacity":1});
+			},function(){
+				$(this).stop(true,false).animate({"opacity":0.15});
+			});
+        </script>
+    </div>
+    <div class="static_ad">{insert name='ads' id=80 num=1}</div>
+</div>
+
+<!--<div class="mt10">{insert name='ads' id=14 num=1}</div>-->

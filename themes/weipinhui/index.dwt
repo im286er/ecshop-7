@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="Description" content="{$description}" />
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <title>{$page_title}</title>
+    <!-- TemplateEndEditable -->
+    <!-- TemplateBeginEditable name="head" -->
+    <!-- TemplateEndEditable -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="animated_favicon.gif" type="image/gif" />
+    <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+    {$goods.seckill_price}
+    {* 包含脚本文件 *}
+    {insert_scripts files='common.js,index.js'}
+</head>
+<body>
+    <!-- header start -->
+    <!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+    <!-- header end -->
+
+    <!-- banner start -->
+    <div class="mainBody">
+        <div class="IndexBanner">
+            <!-- #BeginLibraryItem "/library/index_ad.lbi" -->
+            <!-- #EndLibraryItem -->
+        </div>
+    </div>
+    <!-- banner end -->
+
+<div class='white pad-top'>
+    <div class='block border-one'>
+        <div class="xm-box">
+            <h4 class="title">
+                <span>精品推荐</span>
+            </h4>
+            <div class="clearfix">
+            {foreach from=$best_goods item=best_goods}
+                <div class="goodsItem">
+                    <a href="{$best_goods.url}">
+                        <img src="{$best_goods.thumb}" alt="{$best_goods.short_style_name}" class="goodsimg">
+                    </a>
+                    <br>
+                    <p class="f1">
+                        <a href="{$best_goods.url}" title="{$best_goods.short_style_name}">{$best_goods.short_style_name}</a>
+                    </p>
+                    市场价：<font class="market">￥1199元</font> <br>
+                    本店价：<font class="f1">￥999元</font>
+                    <br>
+                    <p style="display:none;">已有<span class="comment_num">0</span>条评论</p>
+                    <i class="goods-icon" style="display:none"></i>
+                    <i class="goods-icon" style="display:none">0</i>
+                </div>
+            {/foreach}
+            </div>
+        </div>
+    </div>
+
+    <div class='block border-one margin-top'>
+        <div class="xm-box">
+            <h4 class="title">
+                <span>新品上架</span>
+            </h4>
+            <div class="clearfix">
+            {foreach from=$new_goods item=new_goods}
+                <div class="goodsItem">
+                    <a href="{$new_goods.url}">
+                        <img src="{$new_goods.thumb}" alt="{$new_goods.short_style_name}" class="goodsimg">
+                    </a>
+                    <br>
+                    <p class="f1">
+                        <a href="{$best_goods.url}" title="{$new_goods.short_style_name}">{$new_goods.short_style_name}</a>
+                    </p>
+                    市场价：<font class="market">￥1199元</font> <br>
+                    本店价：<font class="f1">￥999元</font>
+                    <br>
+                    <p style="display:none;">已有<span class="comment_num">0</span>条评论</p>
+                    <i class="goods-icon" style="display:none"></i>
+                    <i class="goods-icon" style="display:none">0</i>
+                </div>
+            {/foreach}
+            </div>
+        </div>
+    </div>
+
+    <div class='block border-one margin-top'>
+        <div class="xm-box">
+            <h4 class="title">
+                <span>热卖商品</span>
+            </h4>
+            <div class="clearfix">
+            {foreach from=$hot_goods item=hot_goods}
+                <div class="goodsItem">
+                    <a href="{$hot_goods.url}">
+                        <img src="{$hot_goods.thumb}" alt="{$hot_goods.short_style_name}" class="goodsimg">
+                    </a>
+                    <br>
+                    <p class="f1">
+                        <a href="{$hot_goods.url}" title="{$hot_goods.short_style_name}">{$hot_goods.short_style_name}</a>
+                    </p>
+                    市场价：<font class="market">￥1199元</font> <br>
+                    本店价：<font class="f1">￥999元</font>
+                    <br>
+                    <p style="display:none;">已有<span class="comment_num">0</span>条评论</p>
+                    <i class="goods-icon" style="display:none"></i>
+                    <i class="goods-icon" style="display:none">0</i>
+                </div>
+            {/foreach}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --></div>
+    </div>
+
+    <script type="text/javascript">
+        {foreach from=$lang.compare_js item=item key=key}
+            {if $key neq 'button_compare'}
+                var {$key} = "{$item}";
+            {else}
+                var button_compare = '';
+            {/if}
+        {/foreach}
+        var compare_no_goods = "{$lang.compare_no_goods}";
+        var btn_buy = "{$lang.btn_buy}";
+        var is_cancel = "{$lang.is_cancel}";
+        var select_spe = "{$lang.select_spe}";
+    </script>
+    <!-- footer end -->
+
+</body>
+</html>
+

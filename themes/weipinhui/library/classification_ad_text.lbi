@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{if $category==1}-->
+<ul>
+	<li><b>·</b>江西赣南脐橙 特惠</li>
+    <li><b>·</b>陕西精品红富士 特惠</li>
+    <li><b>·</b>新疆特级阿克苏苹果 特惠</li>
+    <li><b>·</b>红霞草莓 特惠</li>
+    <li><b>·</b>智利蓝莓 买一送一</li>
+    <li><b>·</b>新疆香梨 特惠</li>
+</ul>
+<!-- {/if} -->
+
+<!--{if $category==6}-->
+<ul>
+	<li><b>·</b>韩式骨头汤食材包 特惠</li>
+    <li><b>·</b>黑色蔬菜系列 特惠</li>
+    <li><b>·</b>五谷时蔬 组合特惠</li>
+    <li><b>·</b>山东西兰花 特惠</li>
+    <li><b>·</b>温情冬日 暖心烘烤套餐</li>
+    <li><b>·</b>沙拉菜 买即赠</li>
+</ul>
+<!-- {/if} -->
+
+

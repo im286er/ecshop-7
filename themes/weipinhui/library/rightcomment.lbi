@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="Product_reviews">商品评论</div>
+<div class="Product_reviews_table">
+	<!--{foreach from=$new_comments item=comments name=no} -->
+    <!--{if $smarty.foreach.no.iteration < 5}-->
+	<ul class="Product_re {if $smarty.foreach.no.index mod 2 eq 1}Product_re_right{/if}">
+    	<li>
+            <div class="img"><a href="{$comments.url}" title="{$comments.goods_name}"><img src="{$comments.thumb}" alt="{$comments.goods_name}" width="85" height="85" /></a></div>
+            <div class="text">
+            	<a href="{$comments.url}" title="{$comments.goods_name}">{$comments.goods_name}</a>
+                <span class="grade"><img src="../images/stars{$comments.comment_rank}.gif" alt="{$comments.comment_rank}" /></span>
+                <span class="con">{$comments.content}</span>
+            </div>
+        </li>
+    </ul>
+    <!--{/if}-->
+    <!--{/foreach}-->
+    <script type="text/javascript">
+    	$(".Product_reviews_table ul:last").css("border-bottom", "0");
+		var index = $(".Product_reviews_table ul").length-2;
+		$(".Product_reviews_table ul").eq(index).css("border-bottom", "0");
+    </script>
+</div>

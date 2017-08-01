@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='utils.js,common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+
+
+
+
+
+<div class="J_LayoutArea d-layout d-w790" data-size="790" data-region="right-extra" style='width:790px;margin:20px auto;'>
+                <div onclick="log('shop_03','mall_03','205071','9','21')" class="fn-clear userdefined-21" instanceid="42255240" module-name="UserDefine" style=";margin-bottom: px" origin="0" data-has-point="true">
+	<div class="mc" style=";">
+	 	<div class="j-module" module-function="autoCenter,ridSort" module-param="{}">
+    <div class="userDefinedArea" style="width: 890px; margin-left: -50px;" data-title="">
+        <p style="text-align:center;"></p>
+<div style="text-align: center;">
+ <img src="//img11.360buyimg.com/cms/jfs/t2749/331/3521773324/63226/a149a4cf/5791d1c3N3fa46b42.jpg" height="269" width="790" alt="">
+ <img src="//img11.360buyimg.com/cms/jfs/t2830/132/3554069290/119756/27045e5a/5791d1c5N1e6b303a.jpg" height="298" width="790" alt="">
+ <img src="//img11.360buyimg.com/cms/jfs/t2845/279/3593068234/100943/a021552b/5791d1c6Nc644d36d.jpg" height="301" width="790" alt="">
+ <img src="//img11.360buyimg.com/cms/jfs/t2620/221/3543370193/94033/b282c0f9/5791d1c7N69141c7c.jpg" height="311" width="790" alt="">
+ <img src="//img11.360buyimg.com/cms/jfs/t2914/232/1840118019/130055/c763490e/5791d1c9N743a7b77.jpg" height="307" width="790" alt="">
+ <img src="//img11.360buyimg.com/cms/jfs/t3202/216/440478276/314224/ed74451c/57b7c0dfN2426e6c2.jpg" height="580" width="790" alt="">
+</div>
+    </div>
+</div>
+	</div>
+</div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+<div class="footer">
+<div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='utils.js,common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+
+
+
+
+
+<div class="J_LayoutArea d-layout d-w790" data-size="790" data-region="right-extra" style='margin:20px auto;'>
+    <div onclick="log('shop_03','mall_03','205071','9','21')" class="fn-clear userdefined-21" instanceid="42255420" module-name="UserDefine" style="margin-bottom:5px;;margin-bottom: px" origin="0" data-has-point="true">
+        <div class="mc" style=";">
+            <div class="j-module" module-function="autoCenter,ridSort" module-param="{}">
+                <div class="userDefinedArea" style="width: 790px; margin: 0px auto;" data-title="">
+                    <div style="text-align: center;">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2908/356/2315111841/411174/9e0c21b2/57610eb0N53d94247.jpg" height="947" width="790" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2590/67/2372032015/221827/52f2ea8d/57614ec5N8dde3418.jpg" height="953" width="790" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2731/78/2977506892/336124/5cd54223/577cc150N2d7b3cb9.jpg" height="926" width="790" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2677/303/2298096085/344731/443a1594/57614ec6N118350b9.jpg" height="1037" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2839/159/2341261895/256571/7837da72/5761530cNedd616d9.jpg" height="923" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2635/96/2334664050/127483/430041c/57615310N69469cc0.jpg" height="900" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2818/229/2355972668/245378/f9da02d0/5761537dN7c97e63b.jpg" height="882" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2776/250/2358424931/343745/f92e351c/5761537fN67750872.jpg" height="921" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2896/264/2373777832/268277/ac0bcd0b/57615383N7064d0f2.jpg" height="914" width="790" alt="">
+                        <img src="//img11.360buyimg.com/cms/jfs/t2773/249/2338321564/559472/e41f15b9/57615385N14d91959.jpg" height="967" width="790" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2986/250/600746600/472280/d2b24379/575ff661N5747cb50.jpg" height="2823" width="790" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2746/137/2348265927/230499/4b8a54e4/57614eddN26672395.jpg" height="1002" width="790" alt="">
+                        <img src="//img13.360buyimg.com/cms/jfs/t2980/202/613198599/214875/8e1f3870/576007ecN8c9bf43e.jpg" alt="">
+
+                        <img src="//img11.360buyimg.com/cms/jfs/t2635/90/2356279154/250233/6df39ec0/57614ee8Naf3017e8.jpg" height="990" width="790" alt="">
+                        <br>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="//img10.360buyimg.com/cms/jfs/t3424/183/15258084/293341/fb175b34/58003253Nc89c753e.jpg" alt="">
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="footer">
+<div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --></div>
+</div>
+</body>
+</html>

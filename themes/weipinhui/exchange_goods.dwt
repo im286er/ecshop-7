@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script>
+function changeAtt(t) {
+t.lastChild.checked='checked';
+for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+        if (t.parentNode.childNodes[i].className == 'cattsel') {
+            t.parentNode.childNodes[i].className = '';
+        }
+    }
+t.className = "cattsel";
+changePrice();
+}
+</script>
+<script type="text/javascript">
+function $id(element)
+{
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str)
+{
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+
+  for(var i=0;i<bt.length;i++)
+  {
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+
+    bt[i].onclick=function()
+    {
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++)
+      {
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+</head>
+<body style="background-color:transparent;">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="clearfix" style=" background:#f3f1f4">
+<!--当前位置 start-->
+  <div class="block">
+  <div class="content_title search_title">
+    <div id="ur_here"> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --> </div>
+  </div>
+  </div>
+<!--当前位置 end-->
+<div class="content_detailed">
+<div class="block clearfix">
+
+<div class="detail_middle clearfix">
+	<!--left start-->
+    <div class="AreaL" style="width:263px;">
+    	<!-- 商品推荐 S -->
+        <div class="sidelist PointsTell">
+        	<h3>商品推荐</h3>
+            <div class="SimilarProReco PointsTellCon">
+            	<ul>
+                <!-- {foreach from=$exchange_hot item=goods} -->
+                	<li>
+                    	<div class="SimilarProRecoTit"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.goods_name}</a></div>
+                        <div class="SimilarProRecoImg"><a href="{$goods.url}" title="{$goods.goods_name}"><img src="{$goods.goods_thumb}" alt="" width="240" height="240"></a></div>
+                        <div class="SimilarProRecoText">
+                        	<div class="buyed" style="background:none;"></div>
+                        	<div class="SimilarProRecoWord">价值：<span>{$goods.shop_price}</span>&nbsp;&nbsp;&nbsp;所需积分<span>{$goods.exchange_integral}</span></div>
+                            <div class="SimilarProRecoBuy_qg"><a href="{$goods.url}" title="">去看看</a></div>
+                        </div>
+                    </li>
+                   <!-- {/foreach} -->
+                   
+                </ul>
+            </div>
+            <script type="text/javascript">
+            	$(".SimilarProReco li:last").css({"border-bottom":0,"padding-bottom":0});
+            </script>
+        </div>
+        <!-- 商品推荐 E -->
+    </div>
+    <!--left end-->
+
+  <!--right start-->
+  <div class="AreaR" style=" width:720px; overflow:hidden">
+  	<!--积分商品属性 START-->
+  	<div class="PointsTellDetail clearfix">
+    	<div class="img"><img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}" width="260" height="260" /></div>
+        <div class="property">
+        	<form action="exchange.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+                <h2>{$goods.goods_style_name}</h2>
+                <!-- {if $cfg.show_goodssn} 显示商品货号-->
+                <p>{$lang.goods_sn}{$goods.goods_sn}</p>
+                <!-- {/if} -->
+                <!-- {if $goods.goods_brand neq "" and $cfg.show_brand} 显示商品品牌-->
+                <p>{$lang.goods_brand}<a href="{$goods.goods_brand_url}" >{$goods.goods_brand}</a></p>
+                <!-- {/if} -->
+                <!-- {if $cfg.show_goodsweight} 商品重量-->
+                <p>{$lang.goods_weight}{$goods.goods_weight}</p>
+                <!-- {/if} -->
+                <p>{$lang.exchange_integral}<font>{$goods.exchange_integral}</font></p>
+                <p style="color:#f30082;">提示：积分兑换商品是囍网为答谢广大用户所提供的回馈服务,该商品不限兑换次数</p>
+                <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+                <input type="submit" value="{$lang.exchange_goods}" class="propertySub"/>
+                <!--
+                <p>参考价格：<s>￥1.80</s></p>
+                <p>所需积分：<font>180</font><b>（您当前积分： 0）</b></p>
+                <p>库存：<b>498</b></p>
+                <p>已有<b>2</b>人参与兑换</p>
+                -->
+            </form>
+        </div>
+    </div>
+    <!--积分商品属性 END-->
+    
+	<div class="inDetail_boxOut PointsTellExplain">
+        <!--商品说明 START-->
+        <div class="inDetail_box">
+            <div class="fixed_out ">
+                  <div  id="inner" class="fixed" >
+                    <ul class="inLeft_btn">
+                      <li>{$lang.goods_brief}</li>
+                    </ul>
+                  </div>
+                </div>
+            <div id="no_try_record" class="ProBox js_nn_lc_con">{$goods.goods_desc}</div>
+        </div>
+    
+        <div class="blank"></div>
+        <!--商品说明 END-->
+  </div>
+  <!--right end-->
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<div class="blank5"></div>
+<div class="footer">
+<div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer_other.lbi" --><!-- #EndLibraryItem --></div>
+</div>
+</body>
+
+<script type="text/javascript">
+<!-- {literal} -->
+onload = function()
+{
+  fixpng();
+}
+<!-- {/literal} -->
+</script>
+</html>

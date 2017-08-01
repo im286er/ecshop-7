@@ -1,0 +1,79 @@
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div style="line-height:24px;">
+	<script language="javascript" src="http://api.zocms.com/ecshop/denglu.php?name={$website_name}&charset=utf"></script><!-- 检查是否有新的插件 -->
+</div>
+<form action="" method="post" name="listForm" onsubmit="return confirmSubmit(this)">
+<div class="list-div" id="listDiv">
+<table cellpadding="3" cellspacing="1">
+	<tr>
+    	<th>{$lang.website_name}
+        </th>
+        <th>{$lang.website_author}</th>
+        <th>{$lang.website_qq}</th>
+        <th>{$lang.website_email}</th>
+        <th>{$lang.version}</th>
+        <th>{$lang.update_time}</th>
+        <th>{$lang.handler}</th>
+    </tr>
+    {foreach from=$website item=val}
+    <tr align="center">
+    	<td align="left">{$val.name}</td>
+        <td>{$val.author}</td>
+        <td>{$val.qq}</td>
+        <td>{$val.email}</td>
+        <td>{$val.version}</td>
+        <td>{$val.date}</td>
+        <td>{if !$val.install}<a href="website.php?act=install&type={$val.type}">{$lang.install}</a>{else}
+        	<a href="website.php?act=view&type={$val.type}">{$lang.view}</a>
+            <a href="website.php?act=uninstall&type={$val.type}">{$lang.uninstall}</a>{/if}
+            <!--<script language="javascript" src="http://api.zocms.com/ecshop/denglu.php?type={$val.type}&charset=utf&ver={$val.version}"></script> --><!-- 插件更新 -->
+        </td>
+    </tr>
+    {/foreach}
+</table>
+</div>
+</form>
+<script language="javascript">
+
+/**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm)
+  {
+      if (frm.elements['type'].value == 'uninstall')
+      {
+          return confirm(confrim_uninstall);
+      }
+      else if (frm.elements['type'].value == '')
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+  }
+  
+  function changeAction()
+  {
+      var frm = document.forms['listForm'];
+      // 切换分类列表的显示
+	  document.getElementById('show_check').style.display = frm.elements['type'].value == 'create' ? '' : 'none';
+	  
+	  if(frm.elements['type'].value == 'create')
+	  {
+		  return;
+	  }
+	  
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+
+  
+
+</script>
+{include file="pagefooter.htm"}

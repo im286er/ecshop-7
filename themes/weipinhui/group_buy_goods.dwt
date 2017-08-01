@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,lefttime.js'}
+<script type="text/javascript">
+  {foreach from=$lang.js_languages item=item key=key}
+    var {$key} = "{$item}";
+  {/foreach}
+</script>
+<script type="text/javascript">
+function changeAtt(t) {
+	$(t).find("input[type='radio']").prop("checked",true)
+
+for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+        if (t.parentNode.childNodes[i].className == 'cattsel') {
+            t.parentNode.childNodes[i].className = '';
+        }
+    }
+t.className = "cattsel";
+}
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="content clearfix">
+<!--right start-->
+<form action="group_buy.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+  <div class="block_s">
+    <div class="inDetail_body">
+      <div class="inDetail_left">
+        <div class="inDetail_left_top_out">
+          <div class="inDetail_left_top" style="position:relative">
+            <div class="left_top_txt">
+            	<!--<h2>{$group_buy.goods_name|escape:html}</h2>-->
+                <p>{$group_buy.group_buy_desc}</p>
+            </div>
+            <div class="left_top_box">
+              <div class="left_top_img">
+              	<img src="{$gb_goods.goods_thumb}" alt="{$gb_goods.goods_name|escape:html}" width="500" height="500" />
+                <div class="left_top_title clearix"> 
+              <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_weixin">微信</a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+            </div>
+              </div>
+            </div>
+            <div class="clear" style="clear:both;"></div>
+          </div>
+        </div>
+		<div class="inDetail_left_box_out">
+			<div class="inDetail_left_box"> 
+				<!--商品描述，商品属性 START-->
+				<div class="inDetail_boxOut ">
+					<DIV class="inDetail_box">
+						<div id="no_try_record">
+							<!-- 本单详情-->
+							<div class="inLeft_attributes inLeft_style">
+								<div class="inLeft_orderDetail" style=" background:none; padding:0;">
+									<div class="inLeft_orderDetail_in" > {$gb_goods.goods_desc} </div>
+								</div>
+							</div>
+						</div>
+					</DIV>
+				</div>
+				<div class="blank"></div>
+				<!--商品描述，商品属性 END--> 
+			</div>
+		</div>
+	</div>
+    			<div class="inDetail_right">
+                	<div class="left_top_table">
+                        <div class="left_topTable_01">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <th width="100">市场价</th>
+                                        <th>折扣</th>
+                                        <th width="90">节省</th>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="arial">¥</span>{$group_buy.market_price}</td>
+                                        <td>{$group_buy.zhekou}折</td>
+                                        <td><span class="arial">¥</span>{$group_buy.jiesheng}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="left_topTable_02">
+                            <div class="left_topTable_btn">
+                                <div class="line">¥<strong>{$group_buy.price_ladder.0.price}</strong></div>
+                                <div class="left_topTable_buy">
+                                    <input type="hidden" name="group_buy_id" value="{$group_buy.group_buy_id}" />
+                                    <input type="submit" value="" id="ToBuy"/>
+                                </div>
+                            </div>
+                        </div>
+                		
+                        <div class="GroupCatt">
+                        	<!-- {if $specification}  -->
+                            <!-- {foreach from=$specification item=spec key=spec_key} 循环规格开始 -->
+                            <div class="left_topTable_spec">
+                                <span>{$spec.name}</span>
+                                <div class="catt">
+                                    <!-- {foreach from=$spec.values item=value key=key} -->
+                                    <a title="{$value.label}" name="{$value.id}" href="javascript:;" onclick="changeAtt(this)" {if $key eq 0}class="cattsel"{/if} style=" text-decoration:none">{$value.label}<input type="radio" {if $key eq 0}checked{/if} value="{$value.id}" name="spec_{$spec_key}" id="spec_value_{$value.id}" style="display:none"><i class="a-active"></i></a>
+                                    <!-- {/foreach} -->
+                                </div>
+                                <input type="hidden" value="{$key}" name="spec_list">
+                                <div class="clear"></div>
+                            </div>
+                            <!-- {/foreach} 循环规格结束 -->
+                            <!-- {/if}  -->
+                        </div>
+                        
+                        <div class="bt_infos_r_b GroupCatt">
+                	<span class="bt_counts">数量</span>
+                    <a onclick="buyNumber.minus()" href="javascript:;" class="minus"></a><input name="number" type="text" value="1" defaultnumber="1" onkeyup="inputOnlyNum(this, 1,999);" id="product_num" class="inp_num"><a onclick="buyNumber.plus()" href="javascript:;" class="plus"></a>
+					<script type="text/javascript">
+                    	// add by liuguichun 2011-7-19
+                    	var buyNumber = {
+                    		maxNumber : 100,
+                    		minNumber : 1,
+							defaultNumber : function(){
+								var defaultnumber = $('#product_num').attr('defaultnumber');
+								defaultnumber = parseInt(defaultnumber)
+								if(defaultnumber < 1){
+									defaultnumber = 1;
+								}
+								return defaultnumber;
+							},
+                                                                                                        
+                    		goodNumber : function(num){
+                    			if(typeof(num) == 'number'){
+                    				return $('#product_num').val(num);
+                    			}else{
+                    				return parseInt($('#product_num').val());
+                    			}                                                                                
+                    		},
+							
+                    		plus : function(){
+                    			var num = buyNumber.goodNumber() + buyNumber.defaultNumber();
+                    			if(num <= buyNumber.maxNumber){
+                    				buyNumber.goodNumber(num);
+                    			}
+                    		},
+                    		minus : function(){
+                    			var num = buyNumber.goodNumber() - buyNumber.defaultNumber();
+                    			if(num >= buyNumber.minNumber){
+                    				buyNumber.goodNumber(num);
+                    			}
+                    		}                                                                                
+                    	}
+                    </script>
+                </div>
+                        
+                        <div class="left_topTable_04">
+                            <div class="topTable_buy">已购买人数：<strong>{$group_buy.valid_goods}</strong></div>
+                        </div>
+                
+                        <div class="left_topTable_03">
+                        	<p style="padding-bottom:20px;">距离团购结束还有：</p>
+                            <div id="timer" class="topTable_timer">
+                            	<p class="end_date" value="{$group_buy.end_date}"></p>
+                            </div>
+                        </div>                
+              		</div>
+                	<!-- 其他推荐团购 S -->
+                     <!-- {if $gb_list} 如果有团购活动 -->
+                    <div class="sidelist shan_other_pro">
+                    	<h3>其他推荐团购</h3>
+                        <div class="SimilarProReco">
+                        	<ul>
+                            	  <!-- {foreach from=$gb_list item=group_buy name=foo} 循环团购活动开始 --> 
+                            	<li>
+                                	<div class="SimilarProRecoTit"><a href="{$group_buy.url}" title="{$group_buy.goods_name|escape:html}">{$group_buy.goods_name|escape:html}</a></div>
+                                    <div class="SimilarProRecoImg"><a href="{$group_buy.url}" title="{$group_buy.goods_name|escape:html}"><img src="{$group_buy.goods_thumb}" alt="" width="250" height="250"></a></div>
+                                </li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                    </div>
+                                    <!-- {/if} --> 
+                    <!-- 其他推荐团购 E -->
+				</div>
+			</div>
+		</div>
+	</form>
+    <!--right end-->
+  </div>
+<div class="blank5"></div>
+<div class="flow">
+  <div class="footer">
+    <div class="footerBody"><!-- #BeginLibraryItem "/library/page_footer_other.lbi" --><!-- #EndLibraryItem --> </div>
+  </div>
+</div>
+<script>
+$(function(){
+	setInterval(function(){
+      $(".end_date").each(function(){
+        var obj = $(this);
+		
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+		var show_day =  obj.attr('showday');
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime() + 28800000;
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+		var myH_show=Math.floor(nMS/(1000*60*60) % 24);
+        var myH=Math.floor(nMS/(1000*60*60));
+        var myM=Math.floor(nMS/(1000*60)) % 60;
+        var myS=Math.floor(nMS/1000) % 60;
+        var myMS=Math.floor(nMS/100) % 10;
+		
+		var myHZero = '';
+ 		var myMZero = '';
+		var mySZero = '';
+		if (myH < 10)
+		{
+			var myHZero = '0';
+		}
+		if (myM < 10)
+		{
+			var myMZero = '0';
+		}
+		if (myS < 10)
+		{
+			var mySZero = '0';
+		}
+			
+			
+        if(parseInt(myS+myM+myH+myD) > 0){
+			if(show_day == 'show')
+			{
+				var str = '<strong class="tcd-d">'+myD+'</strong>天<strong class="tcd-h">'+myH_show+'</strong>小时<strong class="tcd-m">'+myM+'</strong>分<strong class="tcd-s">'+myS+'</strong>秒';
+			}
+			else
+			{
+				var str = '<span class="tcd-d">'+myD+'</span><em>天</em><span class="times">'+myH_show+'</span><em>时</em><span class="times">'+myM+'</span><em>分</em><span class="times">'+myS+'</span><em>秒</em>';
+			}
+        }else{
+			var str = "已结束！";	
+		}
+		obj.html(str);
+      });
+    }, 100);	
+})
+</script>
+</body>
+<script type="text/javascript">
+var gmt_end_time = "{$group_buy.gmt_end_date|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var now_time = {$now_time};
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</html>

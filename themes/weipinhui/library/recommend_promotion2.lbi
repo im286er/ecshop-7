@@ -1,0 +1,71 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $promotion_goods} -->
+<div class="NesProThree SlideTxtBox">
+	<div class="hd">
+    	<ul>
+        	<!--{foreach name=no from=$promotion_goods item=goods}-->
+            <!-- {if $smarty.foreach.no.iteration < 4}-->
+        	<li>{$goods.short_style_name}</li>
+            <!-- {/if}-->
+            <!--{/foreach}-->
+        </ul>
+    </div>
+    <div class="bd">
+    	<!--{foreach name=no from=$promotion_goods item=goods}-->
+        <!-- {if $smarty.foreach.no.iteration < 4}-->
+    	<div class="NesProThreeBox NesProImg{$goods.id}" >
+        	<div class="NesProImg"><a href="{$goods.url}" title="{$goods.name|escape:html}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="333" height="333"></a></div>
+            <div class="NesProInfo">
+            	<h3 class="NesPro_tit"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.name|escape:html}</a></h3>
+                <div class="NesPro_price">
+                	<div class="NesPro_price_on">
+                    	<!-- {if $goods.promote_price} -->
+                        {$goods.promote_price}
+                        <!-- {else}-->
+                        {$goods.shop_price}
+                        <!--{/if}-->
+                    </div>
+                    <span class="icon_dscnt">
+                    	<i class="icon_dscnt_l"></i>
+                        <em class="icon_dscnt_m">{$goods.zhekou}折</em>
+                        <i class="icon_dscnt_r"></i>
+                    </span>
+                    <p class="focus_con_off">
+                    	<em class="focus_con_mprice">{$lang.market_prices}：<del>{$goods.market_price}</del></em>
+                    	<em class="focus_con_mreduce">节省¥{$goods.jiesheng}</em>
+                    </p>
+                </div>
+                <div class="NesPro_buy">
+                	<a href="javascript:addToCartShowDiv({$goods.id},1,'promotion2')" class="focus_con_addcart"></a>
+                    <p class="pro_item_count_person"><em>{$goods.sales_volume}</em>人已购买</p>
+                    <p class="s_time">
+                    	<span class="s_time_icon2" showday="show" value="{$goods.end_date}"></span>
+                    </p>
+                </div>
+            </div>
+              <input type="hidden" value="{$goods.thumb}" name="goodsThumb" />
+        </div>
+        <!-- {/if} -->
+        <!--{/foreach}-->
+    </div>
+    <a class="NesProThree_btn next"></a>
+    <a class="NesProThree_btn prev"></a>
+    <script type="text/javascript">
+    	jQuery(".SlideTxtBox").slide({effect:"left"});
+		//
+		$(".NesProThree_btn").stop(true,false).animate({"opacity":0.15});
+		$(".NesProThree").hover(function(){
+			$(".next").stop(true,false).animate({"right":0});
+			$(".prev").stop(true,false).animate({"left":0});
+		},function(){
+			$(".next").stop(true,false).animate({"right":-55+"px","opacity":0.15});
+			$(".prev").stop(true,false).animate({"left":-55+"px","opacity":0.15});
+		});
+		$(".NesProThree_btn").hover(function(){
+			$(this).stop(true,false).animate({"opacity":1});
+		},function(){
+			$(this).stop(true,false).animate({"opacity":0.15});
+		});
+    </script>
+</div>
+<!-- {/if} -->

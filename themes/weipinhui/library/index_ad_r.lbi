@@ -1,0 +1,34 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div style=" margin-bottom:15px; display:block;">
+    <div class="box-shadow SlideBox pic_focus">
+        <div class="hd">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+        <div class="bd">
+        	<ul>
+            	<li>{insert name='ads' id=81 num=1}</li>
+                <li>{insert name='ads' id=82 num=1}</li>
+                <li>{insert name='ads' id=83 num=1}</li>
+            </ul>
+        </div>
+        <a class="pic_focus_btn prev" href="javascript:void(0)"></a>
+        <a class="pic_focus_btn next" href="javascript:void(0)"></a>
+    </div>
+    <script type="text/javascript">
+        jQuery(".SlideBox").slide({mainCell:".bd ul",autoPlay:true,trigger:"click"});
+		//
+		$(".pic_focus_btn").css({"opacity":0});
+		$(".pic_focus").hover(function(){
+			$(".pic_focus_btn").stop(true,false).animate({"opacity":0.25});
+		},function(){
+			$(".pic_focus_btn").stop(true,false).animate({"opacity":0});
+		});
+    </script>
+</div>
+
+<div style="margin-bottom:13px;">{insert name='ads' id=84 num=1}</a>
+</div>

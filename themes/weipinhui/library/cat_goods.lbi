@@ -1,0 +1,101 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="pt10">
+    <div class="title_list">
+        <div class="title_txt"><a href="{$goods_cat.url}" ><span></span>{$goods_cat.name|escape:html}</a></div>
+            <div class="title_key">
+            <dl>
+                <dd class="CatGoodsMore"><a href="{$goods_cat.url}" target="_blank">查看更多{$goods_cat.name|escape:html}商品 ></a></dd>
+                <!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
+                <!--{foreach from=$cat.children item=cat_c}-->
+                <dd><a href="{$cat_c.url}" target="_blank" title="{$cat_c.name}">{$cat_c.name}</a></dd>
+                <!--{/foreach}-->
+                <!--{/foreach}-->
+            </dl>
+        </div>
+    </div>
+    
+    <div class="title_body">
+        <div class="CatGoddsLeft">
+            <div class="wedding_picture">
+                <ul class="ad_pic">
+                    <li lid="0"><?php echo get_adv('indexproad_1',$GLOBALS['smarty']->_var['cat_goods']['id'])?></li>
+                    <li lid="1"><?php echo get_adv('indexproad_2',$GLOBALS['smarty']->_var['cat_goods']['id'])?></li>
+                    <li lid="2"><?php echo get_adv('indexproad_3',$GLOBALS['smarty']->_var['cat_goods']['id'])?></li>
+                </ul>
+                <ul class="ad_text">
+                    <li lid="0" class="li_01" style="width: 200px;"><?php echo get_advname('indexproad_1',$GLOBALS['smarty']->_var['cat_goods']['id'])?><i></i></li>
+                    <li lid="1" class="li_02"><?php echo get_advname('indexproad_2',$GLOBALS['smarty']->_var['cat_goods']['id'])?></li>
+                    <li lid="2" class="li_03"><?php echo get_advname('indexproad_3',$GLOBALS['smarty']->_var['cat_goods']['id'])?></li>
+                </ul>
+            </div>
+            
+            <div class="wedding_picture_title">推荐品牌</div>
+            <div class="wedding_picture_fenlei_word">
+                <ul>
+                	<!--{foreach from=$goods_cat.brands item=brands name=foo}-->
+                    <li><a href="{$brands.url}">» {$brands.brand_name}</a></li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <div class="CatGoddsRight">
+            <div class="CarGoodsList">
+                <ul>
+                    <!--{foreach from=$cat_goods item=goods name=nocat key=key}-->
+                    <!--{if ($key neq 'id' and $key neq 'get_top') or $key eq '0'}-->
+                    <li>
+                        <a href="{$goods.url}" title="{$goods.name}" target="_blank">
+                            <img src="{$goods.thumb}" alt="{$goods.name}" width="190" height="195" style="display:inline;" />
+                            <div class="titlebg">
+                                <span class="CarGoodsListName">{$goods.short_name}</span>
+                                <!-- {if $goods.promote_price neq ""} -->
+                                <span class="CarGoodsListPrice">{$goods.promote_price}</span>
+                                <!-- {else}-->
+                                <span class="CarGoodsListPrice">{$goods.shop_price}</span>
+                                <!--{/if}-->
+                            </div>
+                        </a>
+                    </li>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+            <div class="wedding_paihang">本周热销排行榜</div>
+            <div class="wedding_hot">
+                <ul>
+                	<!--{foreach name=cat_goods from=$cat_goods.get_top item=topgoods}-->
+					<!--{if $smarty.foreach.cat_goods.iteration<6}-->
+                    <li>
+                        <div class="f_l HotNumber"></div>
+                        <a href="{$topgoods.url}" title="{$topgoods.goods_name}" target="_blank">
+                            <div class="f_l"><img src="{$topgoods.goods_thumb}" width="95" height="99" alt="{$topgoods.goods_name}" style="display:inline;" /></div>
+                            <div class="f_l CatGoodsProInfo">
+                                <span class="ProName">{$topgoods.goods_name|escape:html}</span>
+                                <!-- {if $topgoods.promote_price neq ""} -->
+                                <span class="ProPrice">￥{$topgoods.shop_price}</span>
+                                <!-- {else}-->
+                                <span class="ProPrice">￥{$topgoods.promote_price}</span>
+                                <!--{/if}-->
+                            </div>
+                        </a>
+                    </li>
+                    <!--{/if}-->
+					<!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$(".title_body").each(function(){
+		$(this).find(".HotNumber").each(function(i){
+			$(this).addClass("Number_"+(i+1));
+		});
+		
+		$(".title_body").find(".ad_text li:first a").addClass("on");
+		$(".ad_text li").hover(function(){
+			$(this).parent(".ad_text").children().children("a").removeClass("on");
+			$(this).children("a").addClass("on");
+		});
+	});
+</script>
