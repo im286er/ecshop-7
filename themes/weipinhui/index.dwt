@@ -47,8 +47,8 @@
                     <p class="f1">
                         <a href="{$best_goods.url}" title="{$best_goods.short_style_name}">{$best_goods.short_style_name}</a>
                     </p>
-                    市场价：<font class="market">￥1199元</font> <br>
-                    本店价：<font class="f1">￥999元</font>
+                    市场价：<font class="market">￥{$best_goods.market_price}元</font> <br>
+                    本店价：<font class="f1">￥{$best_goods.shop_price}元</font>
                     <br>
                     <p style="display:none;">已有<span class="comment_num">0</span>条评论</p>
                     <i class="goods-icon" style="display:none"></i>

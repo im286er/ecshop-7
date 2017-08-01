@@ -1436,7 +1436,8 @@ background: url(images/s_right.png) no-repeat;
        .goodsItem p{text-align:left; color:#3f3f3f;}
        .goodsItem p a{color:#3f3f3f; text-decoration:none;}
        .goodsItem p a:hover{color:#ff6600; text-decoration:none;}
-       .goodsItem span{width:40px; height:40px; position:absolute;left:0px; top:0px;}
+       /*.goodsItem span{width:40px; height:40px; position:absolute;left:0px; top:0px;}*/
+       .goodsItem span{width:40px; height:40px; }
        .goodsItem span.best{background:url(images/bg.gif) no-repeat 0px -304px;}
        .goodsItem span.news{background:url(images/bg.gif) no-repeat -75px -304px;}
        .goodsItem span.hot{background:url(images/bg.gif) no-repeat -161px -304px;}
